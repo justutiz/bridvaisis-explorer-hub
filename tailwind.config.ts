@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -26,10 +27,10 @@ export default {
 					200: '#99c2df',
 					300: '#66a3cf',
 					400: '#3385bf',
-					500: '#0066af',
+					500: '#0066af', // Main blue from the hero image
 					600: '#00528c',
 					700: '#003e69',
-					800: '#002946',
+					800: '#002946', // Darker blue from hero image
 					900: '#001523',
 				},
 				'lake-teal': {
@@ -38,7 +39,7 @@ export default {
 					200: '#99dfdf',
 					300: '#66cfcf',
 					400: '#33bfbf',
-					500: '#00afaf',
+					500: '#00afaf', // Teal from hero image
 					600: '#008c8c',
 					700: '#006969',
 					800: '#004646',
