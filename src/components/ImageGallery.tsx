@@ -60,6 +60,12 @@ const ImageGallery = () => {
       src: "/lovable-uploads/cbce118e-f0ca-4709-93e0-a1647693eae9.png",
       alt: "Žieminis Bridvaišio ežeras",
       description: "Užšalęs ežeras žiemos metu su nardytojais pralaužtoje eketėje"
+    },
+    {
+      id: 10,
+      src: "/lovable-uploads/8d86d055-7d0c-46f1-aa39-14e2dc883ed0.png",
+      alt: "Nardytojai Bridvaišio ežere iš paukščio skrydžio",
+      description: "Oro vaizdas su trimis nardytojais seklioje ežero pakrantėje"
     }
   ];
 
