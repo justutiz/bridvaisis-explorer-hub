@@ -11,16 +11,12 @@ declare global {
   }
 }
 
-// Initialize Google Tag Manager dataLayer
-window.dataLayer = window.dataLayer || [];
+// Use the existing GTM configuration from index.html
+// We're not initializing GTM here since it's already done in index.html
 function gtag(...args: any[]) {
   window.dataLayer.push(args);
 }
 window.gtag = gtag;
-
-// Initialize GTM with a default config
-gtag('js', new Date());
-gtag('config', 'G-XHHTZGK86K'); // Updated with actual Google Tag Manager ID
 
 // Pritaikome tamsią temą dokumentui
 document.documentElement.classList.add('dark');
