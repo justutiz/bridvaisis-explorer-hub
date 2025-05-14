@@ -55,7 +55,7 @@ const BathymetryMap: React.FC<BathymetryMapProps> = ({
         resizeObserver.unobserve(containerRef.current);
       }
     };
-  }, [onContainerResize]);
+  }, [onContainerResize, isFullscreen]);
 
   // Handle mouse down for dragging
   const handleMouseDown = (e: React.MouseEvent) => {
@@ -120,7 +120,7 @@ const BathymetryMap: React.FC<BathymetryMapProps> = ({
       ref={containerRef}
       className={`relative overflow-hidden cursor-grab active:cursor-grabbing touch-none select-none ${
         isFullscreen 
-          ? "fixed inset-0 z-50 bg-background" 
+          ? "w-full h-full" 
           : "h-[70vh] md:h-[600px]"
       }`}
       onMouseDown={handleMouseDown}
@@ -142,6 +142,7 @@ const BathymetryMap: React.FC<BathymetryMapProps> = ({
       >
         <img
           ref={imageRef}
+          src="/bridvaisis_bathymetry.png"
           alt="Bridvaišio ežero batimetrija"
           className="max-w-none"
           style={{

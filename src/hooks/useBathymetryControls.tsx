@@ -35,40 +35,38 @@ export const useBathymetryControls = (imageRef?: RefObject<HTMLImageElement>) =>
   // Function to update container dimensions
   const updateContainerDimensions = useCallback((width: number, height: number) => {
     setContainerDimensions({ width, height });
-  }, []);
+    // Re-apply constraints when container size changes
+    setPosition(prev => constrainPosition(prev, scale));
+  }, [scale]);
 
-  // Function to constrain position within boundaries
+  // Improved function to constrain position within boundaries
   const constrainPosition = useCallback((pos: { x: number, y: number }, newScale: number = scale) => {
     if (!imageRef?.current || imageDimensions.width === 0) return pos;
 
     const scaledImageWidth = imageDimensions.width * newScale;
     const scaledImageHeight = imageDimensions.height * newScale;
-
-    // Calculate boundaries
-    let minX = containerDimensions.width - scaledImageWidth;
-    let minY = containerDimensions.height - scaledImageHeight;
     
+    let newX = pos.x;
+    let newY = pos.y;
+
     // If image is smaller than container, center it
-    if (scaledImageWidth < containerDimensions.width) {
-      minX = (containerDimensions.width - scaledImageWidth) / 2;
+    if (scaledImageWidth <= containerDimensions.width) {
+      newX = (containerDimensions.width - scaledImageWidth) / 2;
     } else {
-      minX = Math.min(0, minX);
+      // Otherwise constrain it to not show empty space
+      const minX = containerDimensions.width - scaledImageWidth;
+      newX = Math.min(0, Math.max(minX, newX));
     }
 
-    if (scaledImageHeight < containerDimensions.height) {
-      minY = (containerDimensions.height - scaledImageHeight) / 2;
+    if (scaledImageHeight <= containerDimensions.height) {
+      newY = (containerDimensions.height - scaledImageHeight) / 2;
     } else {
-      minY = Math.min(0, minY);
+      // Otherwise constrain it to not show empty space
+      const minY = containerDimensions.height - scaledImageHeight;
+      newY = Math.min(0, Math.max(minY, newY));
     }
 
-    // Maximum positions are 0 or the centering offset
-    const maxX = scaledImageWidth < containerDimensions.width ? minX : 0;
-    const maxY = scaledImageHeight < containerDimensions.height ? minY : 0;
-
-    return {
-      x: Math.max(minX, Math.min(maxX, pos.x)),
-      y: Math.max(minY, Math.min(maxY, pos.y))
-    };
+    return { x: newX, y: newY };
   }, [containerDimensions, imageDimensions, scale, imageRef]);
 
   // Handle zoom in with centered point
@@ -87,11 +85,23 @@ export const useBathymetryControls = (imageRef?: RefObject<HTMLImageElement>) =>
         };
         
         setPosition(constrainPosition(newPosition, newScale));
+      } else {
+        // Use container center for zooming if no specific point provided
+        const centerX = containerDimensions.width / 2;
+        const centerY = containerDimensions.height / 2;
+        
+        const zoomFactor = newScale / prev;
+        const newPosition = {
+          x: centerX - (centerX - position.x) * zoomFactor,
+          y: centerY - (centerY - position.y) * zoomFactor
+        };
+        
+        setPosition(constrainPosition(newPosition, newScale));
       }
       
       return newScale;
     });
-  }, [position, constrainPosition]);
+  }, [position, constrainPosition, containerDimensions]);
 
   // Handle zoom out with centered point
   const zoomOut = useCallback((centerX?: number, centerY?: number) => {
@@ -109,18 +119,30 @@ export const useBathymetryControls = (imageRef?: RefObject<HTMLImageElement>) =>
         };
         
         setPosition(constrainPosition(newPosition, newScale));
+      } else {
+        // Use container center for zooming if no specific point provided
+        const centerX = containerDimensions.width / 2;
+        const centerY = containerDimensions.height / 2;
+        
+        const zoomFactor = newScale / prev;
+        const newPosition = {
+          x: centerX - (centerX - position.x) * zoomFactor,
+          y: centerY - (centerY - position.y) * zoomFactor
+        };
+        
+        setPosition(constrainPosition(newPosition, newScale));
       }
       
       return newScale;
     });
-  }, [position, constrainPosition]);
+  }, [position, constrainPosition, containerDimensions]);
 
   // Handle reset
   const resetView = useCallback(() => {
     setScale(1);
-    setPosition({ x: 0, y: 0 });
+    setPosition(constrainPosition({ x: 0, y: 0 }, 1));
     toast.info("Vaizdas atstatytas į pradinę padėtį");
-  }, []);
+  }, [constrainPosition]);
 
   // Handle slider scale change with center point
   const handleScaleChange = useCallback((values: number[]) => {
@@ -198,7 +220,12 @@ export const useBathymetryControls = (imageRef?: RefObject<HTMLImageElement>) =>
       document.body.style.overflow = '';
       toast.info("Išjungtas pilno ekrano režimas", { duration: 2000 });
     }
-  }, [isFullscreen]);
+
+    // Re-apply constraints after toggling fullscreen
+    setTimeout(() => {
+      setPosition(prev => constrainPosition(prev, scale));
+    }, 50); // Small timeout to let the UI update
+  }, [isFullscreen, constrainPosition, scale]);
 
   // Clean up when component unmounts
   useEffect(() => {
@@ -220,6 +247,11 @@ export const useBathymetryControls = (imageRef?: RefObject<HTMLImageElement>) =>
       window.removeEventListener('keydown', handleEscKey);
     };
   }, [isFullscreen, toggleFullscreen]);
+
+  // Keep position within bounds when scale changes
+  useEffect(() => {
+    setPosition(prev => constrainPosition(prev, scale));
+  }, [scale, constrainPosition]);
 
   return {
     scale,
