@@ -1,24 +1,20 @@
 
-import { createRoot } from 'react-dom/client'
-import App from './App.tsx'
-import './index.css'
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import { BrowserRouter } from 'react-router-dom';
+import './index.css';
+import App from './App';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
-// Google Tag Manager type definition
-declare global {
-  interface Window {
-    gtag: (...args: any[]) => void;
-    dataLayer: any[];
-  }
-}
+const queryClient = new QueryClient();
 
-// Use the existing GTM configuration from index.html
-// We're not initializing GTM here since it's already done in index.html
-function gtag(...args: any[]) {
-  window.dataLayer.push(args);
-}
-window.gtag = gtag;
+ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
+  <React.StrictMode>
+    <QueryClientProvider client={queryClient}>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </QueryClientProvider>
+  </React.StrictMode>,
+);
 
-// Pritaikome tamsią temą dokumentui
-document.documentElement.classList.add('dark');
-
-createRoot(document.getElementById("root")!).render(<App />);
