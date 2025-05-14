@@ -66,6 +66,36 @@ const ImageGallery = () => {
       src: "/lovable-uploads/8d86d055-7d0c-46f1-aa39-14e2dc883ed0.png",
       alt: "Nardytojai Bridvaišio ežere iš paukščio skrydžio",
       description: "Oro vaizdas su trimis nardytojais seklioje ežero pakrantėje"
+    },
+    {
+      id: 11,
+      src: "/lovable-uploads/0a97cfc6-1b48-4d99-8c15-c6a6596cb359.png",
+      alt: "Bridvaišio ežero informacinis stendas",
+      description: "Informatyvus stendas su ežero aprašymu, žemėlapiu ir bioįvairove"
+    },
+    {
+      id: 12,
+      src: "/lovable-uploads/dae13423-b788-42be-894f-cb603b4689f6.png",
+      alt: "Bridvaišio ežero aprašas",
+      description: "Detalus ežero istorijos ir biologinės įvairovės aprašymas"
+    },
+    {
+      id: 13,
+      src: "/lovable-uploads/bfdc4145-70dc-486b-b79a-b237df96bc28.png",
+      alt: "Ežero vėžiagyviai",
+      description: "Bridvaišio ežere aptinkamų vėžiagyvių rūšys - plačiažnyplis vėžys ir keturspyglė šoniplauka"
+    },
+    {
+      id: 14,
+      src: "/lovable-uploads/ddf7bfc0-070a-48c0-adb2-4265225529f9.png",
+      alt: "Ežero fauna - vijūnas",
+      description: "Vijūnas (Misgurnus fossilis) - reta žuvis, aptinkama Bridvaišio ežere"
+    },
+    {
+      id: 15,
+      src: "/lovable-uploads/f8a55ea5-c870-4cc2-99e7-e4e14b3a0640.png",
+      alt: "Bridvaišio ežeras istoriniame kontekste",
+      description: "Istorinė ežero nuotrauka ir šiuolaikinė vėgėlė (Lota lota)"
     }
   ];
 
