@@ -1,7 +1,7 @@
 
 import React from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { AspectRatio } from "@/components/ui/aspect-ratio";
+import ReactMarkdown from "react-markdown";
 
 // Component that displays diving stories/experiences
 const DivingTexts = () => {
@@ -10,29 +10,31 @@ const DivingTexts = () => {
     {
       title: "Bridvaišio ežeras: tamsi gelmė, kuri traukia ir gąsdina",
       author: "Nardytojas",
-      content: `Bridvaišio vardas tarp narų skamba ne šiaip sau – jis lyg paslaptingas vartas į kitą pasaulį. Tai vieta, kur net patyrusiems nardytojams tenka susidurti su netikėtomis emocijomis: nuo azotinės narkozės miglos iki keistų vaizdinių, apie kuriuos vėliau kalbama puse lūpų... Kas tai lemia? Pirmiausia – vandens tamsa. Pažvelgus į paviršių iš gilumos, atrodo, kad virš galvos plyti tirštas kraujo sluoksnis. Antra – vos žengus nuo kranto, po kojomis atsiveria milžiniškas status šlaitas, be jokio perėjimo į lėtą gilumą. Ir, žinoma, – gylis: daugiau nei 40 metrų.
+      content: `**Bridvaišio ežeras: tamsi gelmė, kuri traukia ir gąsdina**
+
+Bridvaišio vardas tarp narų skamba ne šiaip sau – jis lyg paslaptingas vartas į kitą pasaulį. Tai vieta, kur net patyrusiems nardytojams tenka susidurti su netikėtomis emocijomis: nuo azotinės narkozės miglos iki keistų vaizdinių, apie kuriuos vėliau kalbama puse lūpų... Kas tai lemia? Pirmiausia – vandens tamsa. Pažvelgus į paviršių iš gilumos, atrodo, kad virš galvos plyti tirštas kraujo sluoksnis. Antra – vos žengus nuo kranto, po kojomis atsiveria milžiniškas status šlaitas, be jokio perėjimo į lėtą gilumą. Ir, žinoma, – gylis: daugiau nei 40 metrų.
 
 Tačiau būtent šis ekstremalus derinys Bridvaišį paverčia unikaliu iššūkiu – vieta, kurią vertina patyrę narai. Čia patogu privažiuoti, įeiti į vandenį – infrastruktūra draugiška, o povandeninis pasaulis slepia ne vieną įdomybę.
 
-Ką pamatysi po vandeniu?
+**Ką pamatysi po vandeniu?**
 
-Šlaitas: tai natūralus ežero reljefas – beveik vertikali siena, išvagota vėgėlių urvų. Jis toks status, kad stovint vos metro gylyje, per kelias minutes galima pasiekti pačią dugno ribą – net 42 metrus.
+* **Šlaitas:** tai natūralus ežero reljefas – beveik vertikali siena, išvagota vėgėlių urvų. Jis toks status, kad stovint vos metro gylyje, per kelias minutes galima pasiekti pačią dugno ribą – net 42 metrus.
 
-Verpimo ratelis (6 m): pirmas pasitinkantis objektas – tarsi pasveikinimas iš praeities, tyliai laukiantis narų.
+* **Verpimo ratelis (6 m):** pirmas pasitinkantis objektas – tarsi pasveikinimas iš praeities, tyliai laukiantis narų.
 
-Kelio ženklas (12 m): jei pasimestum tarp dangaus ir dugno – čia ežeras pats parodys kryptį. Tikras ženklas, tarsi iš povandeninės juokų šalies.
+* **Kelio ženklas (12 m):** jei pasimestum tarp dangaus ir dugno – čia ežeras pats parodys kryptį. Tikras ženklas, tarsi iš povandeninės juokų šalies.
 
-Ofisiukas (15 m): stalas, kompiuteris, klaviatūra – visas „nuotolinio darbo" komplektas. Kas sakė, kad dirbti galima tik ant žemės?
+* **Ofisiukas (15 m):** stalas, kompiuteris, klaviatūra – visas „nuotolinio darbo" komplektas. Kas sakė, kad dirbti galima tik ant žemės?
 
-Valtis (18 m): medinė valtis, įsitaisiusi ant šlaito, kažkokiu stebuklu dar laikosi vietoje. Lyg laukdama, kol kažkas ją ištrauks iš amžino miego.
+* **Valtis (18 m):** medinė valtis, įsitaisiusi ant šlaito, kažkokiu stebuklu dar laikosi vietoje. Lyg laukdama, kol kažkas ją ištrauks iš amžino miego.
 
-Ragana (27 m): turbūt keisčiausias objektas – ragana, kuri, atrodo, tik ir laukia nekviestų svečių. Patarimas: nepriartėk per daug.
+* **Ragana (27 m):** turbūt keisčiausias objektas – ragana, kuri, atrodo, tik ir laukia nekviestų svečių. Patarimas: nepriartėk per daug.
 
-Ereliukas (42 m): senovinis vandens dviratis – Bridvaišio paslaptis pačioje gelmėje. Deja, dažnai paskendęs tamsiame ūke, todėl jo pamatyti nepavyksta kiekvienam.
+* **Ereliukas (42 m):** senovinis vandens dviratis – Bridvaišio paslaptis pačioje gelmėje. Deja, dažnai paskendęs tamsiame ūke, todėl jo pamatyti nepavyksta kiekvienam.
 
-Svarbus perspėjimas: šis ežeras – ne pradedantiesiems. Dėl staigaus nuolydžio ir ypač tamsaus vandens čia nardyti saugu tik gerai pasiruošus. Jei vis dar mokaisi suvaldyti plūdrumą – geriau pradėti nuo paprastesnių vietų.
+**Svarbus perspėjimas:** šis ežeras – ne pradedantiesiems. Dėl staigaus nuolydžio ir ypač tamsaus vandens čia nardyti saugu tik gerai pasiruošus. Jei vis dar mokaisi suvaldyti plūdrumą – geriau pradėti nuo paprastesnių vietų.
 
-Kada geriausia nerti? Žiemą. Kuo šaltesnis vanduo, tuo skaidresnis jis tampa. O kartu – ir Bridvaišio paslaptys lengviau atsiskleidžia...`,
+**Kada geriausia nerti?** Žiemą. Kuo šaltesnis vanduo, tuo skaidresnis jis tampa. O kartu – ir Bridvaišio paslaptys lengviau atsiskleidžia...`,
       image: "/lovable-uploads/dfcd077b-6da7-4bb1-bbdb-51a44e6ad22a.png"
     }
   ];
@@ -59,14 +61,12 @@ Kada geriausia nerti? Žiemą. Kuo šaltesnis vanduo, tuo skaidresnis jis tampa.
           divingTexts.map((text, index) => (
             <Card key={index} className="mb-4 overflow-hidden">
               {text.image && (
-                <div className="relative overflow-hidden">
-                  <AspectRatio ratio={16/9}>
-                    <img 
-                      src={text.image} 
-                      alt={text.title} 
-                      className="w-full h-full object-cover"
-                    />
-                  </AspectRatio>
+                <div className="w-full">
+                  <img 
+                    src={text.image} 
+                    alt={text.title} 
+                    className="w-full h-auto"
+                  />
                 </div>
               )}
               <CardHeader>
@@ -76,7 +76,9 @@ Kada geriausia nerti? Žiemą. Kuo šaltesnis vanduo, tuo skaidresnis jis tampa.
                 </p>
               </CardHeader>
               <CardContent>
-                <div className="whitespace-pre-line text-justify">{text.content}</div>
+                <div className="prose prose-lg max-w-none">
+                  <ReactMarkdown>{text.content}</ReactMarkdown>
+                </div>
               </CardContent>
             </Card>
           ))
