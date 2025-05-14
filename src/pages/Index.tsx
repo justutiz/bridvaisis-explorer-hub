@@ -198,40 +198,34 @@ const Index = () => {
                     { id: "about", label: "Apie" },
                     { id: "photos", label: "Momentai" },
                     { id: "videos", label: "Nardymo video" },
-                    { id: "diving-texts", label: "Nardytojų įspūdžiai" }
+                    { id: "diving-texts", label: "Nardytojų įspūdžiai" },
+                    { id: "bathymetry", label: "Detali batimetrija", external: true, url: "/bridvaisis_bathymetry.jpg" }
                   ].map((tab) => (
                     <button 
                       key={tab.id} 
                       className={`flex items-center justify-between p-3 border-b border-white/10 ${
-                        activeTab === tab.id
+                        activeTab === tab.id && !tab.external
                           ? 'bg-white/10 font-medium' 
                           : 'hover:bg-white/5'
                       }`}
                       onClick={() => {
-                        setActiveTab(tab.id);
-                        setMenuOpen(false);
+                        if (tab.external) {
+                          window.open(tab.url, '_blank');
+                        } else {
+                          setActiveTab(tab.id);
+                          setMenuOpen(false);
+                        }
                       }}
                     >
                       <span className="flex items-center gap-2">
                         {tab.label}
+                        {tab.external && <ExternalLink className="h-4 w-4" />}
                       </span>
-                      {activeTab === tab.id && (
+                      {activeTab === tab.id && !tab.external && (
                         <div className="w-2 h-2 rounded-full bg-lake-teal-400" />
                       )}
                     </button>
                   ))}
-                  
-                  <a 
-                    href="/bridvaisis_bathymetry.jpg" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="flex items-center justify-between p-3 border-b border-white/10 hover:bg-white/5"
-                  >
-                    <span className="flex items-center gap-2">
-                      Detali batimetrija
-                      <ExternalLink className="h-4 w-4" />
-                    </span>
-                  </a>
                 </div>
               </div>
             </div>
@@ -240,11 +234,20 @@ const Index = () => {
         
         {/* Desktop tabs */}
         <Tabs defaultValue="about" value={activeTab} onValueChange={setActiveTab} className={`w-full ${isMobile ? 'hidden' : 'block'} ${isLoaded ? 'opacity-100' : 'opacity-0'} transition-opacity duration-300`}>
-          <TabsList className="grid w-full grid-cols-4 mb-8">
+          <TabsList className="grid w-full grid-cols-5 mb-8">
             <TabsTrigger value="about">Apie</TabsTrigger>
             <TabsTrigger value="photos">Momentai</TabsTrigger>
             <TabsTrigger value="videos">Nardymo video</TabsTrigger>
             <TabsTrigger value="diving-texts">Nardytojų įspūdžiai</TabsTrigger>
+            <TabsTrigger 
+              value="bathymetry" 
+              onClick={(e) => {
+                e.preventDefault();
+                window.open("/bridvaisis_bathymetry.jpg", "_blank");
+              }}
+            >
+              Detali batimetrija
+            </TabsTrigger>
           </TabsList>
           
           {/* Add bathymetry link button */}
