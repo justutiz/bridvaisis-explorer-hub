@@ -18,6 +18,20 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
   setActiveTab, 
   closeMenu 
 }) => {
+  const handleMenuItemClick = (tabId: string) => {
+    // Track mobile menu item click for analytics
+    if (window.gtag) {
+      window.gtag('event', 'mobile_menu_click', {
+        'event_category': 'navigation',
+        'event_label': tabId,
+        'value': 1
+      });
+    }
+    
+    setActiveTab(tabId);
+    closeMenu();
+  };
+
   return (
     <>
       <div className="sticky top-0 z-20 bg-lake-blue-800 text-white py-3 px-4 flex justify-between items-center shadow-lg">
@@ -69,10 +83,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
                         ? 'bg-white/10 font-medium' 
                         : 'hover:bg-white/5'
                     }`}
-                    onClick={() => {
-                      setActiveTab(tab.id);
-                      closeMenu();
-                    }}
+                    onClick={() => handleMenuItemClick(tab.id)}
                   >
                     <span className="flex items-center gap-2">
                       {tab.label}

@@ -1,5 +1,5 @@
 
-import React from "react";
+import React, { useEffect } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import TabContent from "./TabContent";
 
@@ -11,6 +11,19 @@ interface NavigationProps {
 }
 
 const Navigation: React.FC<NavigationProps> = ({ isLoaded, isMobile, activeTab, setActiveTab }) => {
+  const handleTabChange = (value: string) => {
+    // Track tab change event for analytics
+    if (window.gtag) {
+      window.gtag('event', 'menu_click', {
+        'event_category': 'navigation',
+        'event_label': value,
+        'value': 1
+      });
+    }
+    
+    setActiveTab(value);
+  };
+
   if (isMobile) {
     return (
       <div className={`space-y-6 transition-all duration-500 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
@@ -23,7 +36,7 @@ const Navigation: React.FC<NavigationProps> = ({ isLoaded, isMobile, activeTab, 
     <Tabs 
       defaultValue="about" 
       value={activeTab} 
-      onValueChange={setActiveTab} 
+      onValueChange={handleTabChange} 
       className={`w-full ${isMobile ? 'hidden' : 'block'} ${isLoaded ? 'opacity-100' : 'opacity-0'} transition-opacity duration-300`}
     >
       <TabsList className="grid w-full grid-cols-5 mb-8">

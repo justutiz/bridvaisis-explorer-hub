@@ -3,6 +3,25 @@ import { createRoot } from 'react-dom/client'
 import App from './App.tsx'
 import './index.css'
 
+// Google Tag Manager type definition
+declare global {
+  interface Window {
+    gtag: (...args: any[]) => void;
+    dataLayer: any[];
+  }
+}
+
+// Initialize Google Tag Manager dataLayer
+window.dataLayer = window.dataLayer || [];
+function gtag(...args: any[]) {
+  window.dataLayer.push(args);
+}
+window.gtag = gtag;
+
+// Initialize GTM with a default config
+gtag('js', new Date());
+gtag('config', 'G-MEASUREMENT-ID'); // Replace with your actual Google Tag Manager ID in production
+
 // Pritaikome tamsią temą dokumentui
 document.documentElement.classList.add('dark');
 
