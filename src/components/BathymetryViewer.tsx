@@ -288,7 +288,8 @@ const BathymetryViewer = () => {
                   style={{
                     visibility: loading ? 'hidden' : 'visible',
                     userSelect: 'none', // Prevent text selection during drag
-                    WebkitUserDrag: 'none', // Prevent image dragging in webkit browsers
+                    // Fix: Using a valid CSS property name with string type
+                    WebkitUserSelect: 'none', // Use WebkitUserSelect instead of WebkitUserDrag
                   }}
                   draggable="false" // Prevent native image dragging
                   onDragStart={(e) => e.preventDefault()} // Extra safety for image drag prevention
