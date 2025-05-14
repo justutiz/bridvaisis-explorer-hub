@@ -9,7 +9,7 @@ import { useToast } from "@/hooks/use-toast";
 import ImageGallery from "@/components/ImageGallery";
 import VideoGallery from "@/components/VideoGallery";
 import DivingTexts from "./DivingTexts";
-import { Menu, X, ChevronRight, Book } from "lucide-react";
+import { Menu, X, ChevronRight } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
 
 const Index = () => {
@@ -198,7 +198,7 @@ const Index = () => {
                     { id: "about", label: "Apie" },
                     { id: "photos", label: "Momentai" },
                     { id: "videos", label: "Nardymo video" },
-                    { id: "diving-texts", label: "Nardytojų įspūdžiai", icon: <Book className="h-4 w-4" /> }
+                    { id: "diving-texts", label: "Nardytojų įspūdžiai" }
                   ].map((tab) => (
                     <button 
                       key={tab.id} 
@@ -233,10 +233,7 @@ const Index = () => {
             <TabsTrigger value="about">Apie</TabsTrigger>
             <TabsTrigger value="photos">Momentai</TabsTrigger>
             <TabsTrigger value="videos">Nardymo video</TabsTrigger>
-            <TabsTrigger value="diving-texts" className="flex items-center gap-2">
-              <Book className="h-4 w-4" />
-              <span>Nardytojų įspūdžiai</span>
-            </TabsTrigger>
+            <TabsTrigger value="diving-texts">Nardytojų įspūdžiai</TabsTrigger>
           </TabsList>
           
           <TabsContent value="about" className={`space-y-6 transition-all duration-500 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
