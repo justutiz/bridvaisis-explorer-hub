@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, useRef } from "react";
 import { 
   Card, 
@@ -262,7 +261,7 @@ const Index = () => {
                   
                   <div className="relative h-[300px] md:h-full min-h-[300px] rounded-lg overflow-hidden">
                     <iframe 
-                      src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d2046.1004634699386!2d23.216317685191125!3d55.591421137041344!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zNTXCsDM1JzM2LjAiTiAyM8KwMTMnMTcuMiJF!5e0!3m2!1slt!2slt!4v1747206582718!5m2!1slt!2slt" 
+                      src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d9509.850262103346!2d23.21526926028054!3d55.591421137041344!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zNTXCsDM1JzM2LjAiTiAyM8KwMTMnMTcuMiJF!5e1!3m2!1slt!2slt!4v1747206582718!5m2!1slt!2slt" 
                       width="100%" 
                       height="100%" 
                       style={{ border: 0 }} 
@@ -350,7 +349,7 @@ const Index = () => {
                     
                     <div className="relative h-[300px] rounded-lg overflow-hidden">
                       <iframe 
-                        src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d2046.1004634699386!2d23.216317685191125!3d55.591421137041344!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zNTXCsDM1JzM2LjAiTiAyM8KwMTMnMTcuMiJF!5e0!3m2!1slt!2slt!4v1747206582718!5m2!1slt!2slt" 
+                        src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d9509.850262103346!2d23.21526926028054!3d55.591421137041344!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zNTXCsDM1JzM2LjAiTiAyM8KwMTMnMTcuMiJF!5e1!3m2!1slt!2slt!4v1747206582718!5m2!1slt!2slt" 
                         width="100%" 
                         height="100%" 
                         style={{ border: 0 }} 
