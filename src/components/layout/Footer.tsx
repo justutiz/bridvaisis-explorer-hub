@@ -11,6 +11,7 @@ const Footer: React.FC<FooterProps> = ({ isLoaded }) => {
       <div className="container mx-auto text-center">
         <p>&copy; {new Date().getFullYear()} Bridvaišio ežero informacinis puslapis</p>
         <p className="text-sm mt-2">Šis puslapis skirtas dalintis informacija apie Bridvaišio ežerą ir nardymo patirtis jame.</p>
+        <p className="text-sm mt-4 italic font-light">With deepest love for this lake, Justas Maziliauskas</p>
       </div>
     </footer>
   );
