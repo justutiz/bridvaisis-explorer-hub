@@ -3,6 +3,10 @@ import React, { useState, useRef, useEffect } from "react";
 import { Button } from "./ui/button";
 import { Card, CardContent } from "./ui/card";
 import { ZoomIn, ZoomOut, MoveHorizontal, RotateCcw, Download } from "lucide-react";
+import { Progress } from "./ui/progress";
+import { Skeleton } from "./ui/skeleton";
+import { AspectRatio } from "./ui/aspect-ratio";
+import { toast } from "sonner";
 
 const BathymetryViewer = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -12,20 +16,73 @@ const BathymetryViewer = () => {
   const [isDragging, setIsDragging] = useState(false);
   const [dragStart, setDragStart] = useState({ x: 0, y: 0 });
   const [loading, setLoading] = useState(true);
+  const [loadProgress, setLoadProgress] = useState(0);
+  const [imageError, setImageError] = useState(false);
   
-  // Handle loading state
+  // Preload image with progress tracking
   useEffect(() => {
-    if (imageRef.current) {
-      if (imageRef.current.complete) {
-        setLoading(false);
-      } else {
-        imageRef.current.onload = () => setLoading(false);
-      }
-    }
+    setLoading(true);
+    setImageError(false);
     
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', '/bridvaisis_bathymetry.png', true);
+    xhr.responseType = 'arraybuffer';
+    
+    xhr.onprogress = (event) => {
+      if (event.lengthComputable) {
+        const percentComplete = Math.round((event.loaded / event.total) * 100);
+        setLoadProgress(percentComplete);
+      }
+    };
+    
+    xhr.onload = function() {
+      if (xhr.status === 200) {
+        // Convert array buffer to base64 string
+        const uInt8Array = new Uint8Array(xhr.response);
+        let binaryString = '';
+        for (let i = 0; i < uInt8Array.length; i++) {
+          binaryString += String.fromCharCode(uInt8Array[i]);
+        }
+        const base64 = btoa(binaryString);
+        
+        // Create blob URL from the image data
+        const blob = new Blob([xhr.response], {type: 'image/png'});
+        const blobUrl = URL.createObjectURL(blob);
+        
+        // Set the image source to the blob URL
+        if (imageRef.current) {
+          imageRef.current.src = blobUrl;
+          imageRef.current.onload = () => {
+            setLoading(false);
+            toast.success("Batimetrijos žemėlapis sėkmingai užkrautas");
+          };
+          imageRef.current.onerror = () => {
+            setImageError(true);
+            setLoading(false);
+            toast.error("Nepavyko užkrauti batimetrijos žemėlapio");
+          };
+        }
+      } else {
+        setImageError(true);
+        setLoading(false);
+        toast.error("Nepavyko užkrauti batimetrijos žemėlapio");
+      }
+    };
+    
+    xhr.onerror = function() {
+      setImageError(true);
+      setLoading(false);
+      toast.error("Nepavyko užkrauti batimetrijos žemėlapio");
+    };
+    
+    xhr.send();
+    
+    // Cleanup
     return () => {
+      xhr.abort();
       if (imageRef.current) {
         imageRef.current.onload = null;
+        imageRef.current.onerror = null;
       }
     };
   }, []);
@@ -89,7 +146,7 @@ const BathymetryViewer = () => {
     setIsDragging(false);
   };
 
-  // Handle wheel zoom
+  // Handle wheel zoom with improved smoothness
   const handleWheel = (e: React.WheelEvent) => {
     e.preventDefault();
     const delta = -e.deltaY / 500;
@@ -150,10 +207,32 @@ const BathymetryViewer = () => {
 
       <Card className="overflow-hidden relative">
         {loading && (
-          <div className="absolute inset-0 flex items-center justify-center bg-background/80 z-10">
-            <div className="h-8 w-8 rounded-full border-4 border-primary border-t-transparent animate-spin"></div>
+          <div className="absolute inset-0 z-10 bg-background/80 flex flex-col items-center justify-center">
+            <div className="w-full max-w-md px-4 space-y-4">
+              <Skeleton className="h-12 w-12 rounded-full mx-auto" />
+              <div className="space-y-2">
+                <h3 className="text-center font-medium">Kraunamas batimetrijos žemėlapis</h3>
+                <Progress value={loadProgress} className="w-full h-2" />
+                <p className="text-center text-sm text-muted-foreground">{loadProgress}% užkrauta...</p>
+              </div>
+            </div>
           </div>
         )}
+        
+        {imageError && (
+          <div className="absolute inset-0 z-10 bg-background/80 flex items-center justify-center">
+            <div className="text-center p-4">
+              <p className="text-destructive font-medium mb-2">Nepavyko užkrauti žemėlapio</p>
+              <p className="text-sm text-muted-foreground mb-4">
+                Bandykite perkrauti puslapį arba grįžkite vėliau
+              </p>
+              <Button onClick={() => window.location.reload()} variant="outline">
+                Bandyti dar kartą
+              </Button>
+            </div>
+          </div>
+        )}
+        
         <CardContent className="p-0 overflow-hidden">
           <div
             ref={containerRef}
@@ -167,20 +246,35 @@ const BathymetryViewer = () => {
             onTouchEnd={handleDragEnd}
             onWheel={handleWheel}
           >
-            <div
-              className={`absolute transform transition-none ${isDragging ? "" : "duration-100"}`}
-              style={{
-                transform: `translate(${position.x}px, ${position.y}px) scale(${scale})`,
-                transformOrigin: "center center",
-              }}
-            >
-              <img
-                ref={imageRef}
-                src="/bridvaisis_bathymetry.png"
-                alt="Bridvaišio ežero batimetrija"
-                className="max-w-none"
-              />
-            </div>
+            {!loading && !imageError && (
+              <div
+                className={`absolute transform transition-none will-change-transform ${isDragging ? "" : "duration-100"}`}
+                style={{
+                  transform: `translate(${position.x}px, ${position.y}px) scale(${scale})`,
+                  transformOrigin: "center center",
+                }}
+              >
+                <img
+                  ref={imageRef}
+                  alt="Bridvaišio ežero batimetrija"
+                  className="max-w-none"
+                  style={{
+                    visibility: loading ? 'hidden' : 'visible'
+                  }}
+                />
+              </div>
+            )}
+
+            {/* Add placeholder low-res preview image */}
+            {loading && (
+              <div className="absolute inset-0 flex items-center justify-center opacity-30">
+                <img 
+                  src="/placeholder.svg" 
+                  alt="Batimetrijos žemėlapio užkrovimas" 
+                  className="w-1/2 h-auto object-contain"
+                />
+              </div>
+            )}
           </div>
         </CardContent>
       </Card>
