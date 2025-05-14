@@ -42,6 +42,12 @@ const ImageGallery = () => {
       src: "/lovable-uploads/579660c0-a3d6-4aaf-acb5-b45a65dd5063.png",
       alt: "Bridvaišio ežero žuvis",
       description: "Ežero žuvis tarp povandeninių uolų ir augalijos"
+    },
+    {
+      id: 7,
+      src: "/lovable-uploads/24901f23-4164-47be-9b91-00da2abb38dc.png",
+      alt: "Povandeninė būtybė Bridvaišio ežere",
+      description: "Paslaptinga povandeninė būtybė aptikta tyrinėjant ežero gelmes"
     }
   ];
 
