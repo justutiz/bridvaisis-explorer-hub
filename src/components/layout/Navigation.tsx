@@ -2,6 +2,7 @@
 import React, { useEffect } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import TabContent from "./TabContent";
+import { Link } from "react-router-dom";
 
 interface NavigationProps {
   isLoaded: boolean;
