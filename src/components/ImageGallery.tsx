@@ -10,20 +10,20 @@ const ImageGallery = () => {
     {
       id: 1,
       src: "/lovable-uploads/26234cb5-daf8-4d19-9f18-72129d5dc1bd.png",
-      alt: "Lake Bridvaišis Diving Map and Bathymetry",
-      description: "Detailed bathymetric map showing diving routes and depth contours"
+      alt: "Bridvaišio ežero nardymo žemėlapis ir batimetrija",
+      description: "Detalus batimetrinis žemėlapis, rodantis nardymo maršrutus ir gylio kontūrus"
     },
     {
       id: 2, 
       src: "https://images.unsplash.com/photo-1504893524553-b855bce32c67",
-      alt: "Lake Bridvaišis Underwater Landscape",
-      description: "River surrounded by rock formation in Lake Bridvaišis"
+      alt: "Bridvaišio ežero povandeninis kraštovaizdis",
+      description: "Upė, apsupta uolų formacijų Bridvaišio ežere"
     },
     {
       id: 3,
       src: "https://images.unsplash.com/photo-1472396961693-142e6e269027",
-      alt: "Lake Bridvaišis Wildlife",
-      description: "Wildlife near Lake Bridvaišis"
+      alt: "Bridvaišio ežero gyvūnija",
+      description: "Gyvūnija netoli Bridvaišio ežero"
     }
   ];
 
@@ -43,7 +43,7 @@ const ImageGallery = () => {
                 </AspectRatio>
                 <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-10 transition-opacity flex items-center justify-center">
                   <span className="text-white opacity-0 group-hover:opacity-100 transition-opacity font-medium">
-                    Click to zoom
+                    Spustelkite, kad padidintumėte
                   </span>
                 </div>
               </div>

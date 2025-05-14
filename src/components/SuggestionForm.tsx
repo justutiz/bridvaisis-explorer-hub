@@ -19,16 +19,16 @@ import { useToast } from "@/hooks/use-toast";
 
 const formSchema = z.object({
   name: z.string().min(2, {
-    message: "Name must be at least 2 characters.",
+    message: "Vardas turi būti bent 2 simbolių ilgio.",
   }),
   email: z.string().email({
-    message: "Please enter a valid email address.",
+    message: "Įveskite teisingą el. pašto adresą.",
   }),
   suggestionType: z.string().min(1, {
-    message: "Please specify what kind of suggestion you have.",
+    message: "Nurodykite, kokio pobūdžio pasiūlymą turite.",
   }),
   suggestion: z.string().min(10, {
-    message: "Suggestion must be at least 10 characters.",
+    message: "Pasiūlymas turi būti bent 10 simbolių ilgio.",
   }),
 });
 
@@ -50,8 +50,8 @@ const SuggestionForm = () => {
     
     // In a real application, you would send this to your backend
     toast({
-      title: "Suggestion submitted!",
-      description: "Thank you for contributing to the Lake Bridvaišis page.",
+      title: "Pasiūlymas išsiųstas!",
+      description: "Ačiū, kad prisidedate prie Bridvaišio ežero puslapio.",
     });
     
     form.reset();
@@ -66,9 +66,9 @@ const SuggestionForm = () => {
             name="name"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Your Name</FormLabel>
+                <FormLabel>Jūsų vardas</FormLabel>
                 <FormControl>
-                  <Input placeholder="John Doe" {...field} />
+                  <Input placeholder="Jonas Jonaitis" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -80,9 +80,9 @@ const SuggestionForm = () => {
             name="email"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Email</FormLabel>
+                <FormLabel>El. paštas</FormLabel>
                 <FormControl>
-                  <Input placeholder="your.email@example.com" {...field} />
+                  <Input placeholder="jusu.pastas@pavyzdys.lt" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -95,9 +95,9 @@ const SuggestionForm = () => {
           name="suggestionType"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Suggestion Type</FormLabel>
+              <FormLabel>Pasiūlymo tipas</FormLabel>
               <FormControl>
-                <Input placeholder="New video, website improvement, new information, etc." {...field} />
+                <Input placeholder="Naujas vaizdo įrašas, svetainės patobulinimas, nauja informacija ir t.t." {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -109,23 +109,23 @@ const SuggestionForm = () => {
           name="suggestion"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Your Suggestion</FormLabel>
+              <FormLabel>Jūsų pasiūlymas</FormLabel>
               <FormControl>
                 <Textarea 
-                  placeholder="Please describe your suggestion in detail..." 
+                  placeholder="Išsamiai aprašykite savo pasiūlymą..." 
                   className="min-h-[120px]"
                   {...field} 
                 />
               </FormControl>
               <FormDescription>
-                Feel free to include links to videos, images, or any other relevant information.
+                Galite įtraukti nuorodas į vaizdo įrašus, nuotraukas ar kitą aktualią informaciją.
               </FormDescription>
               <FormMessage />
             </FormItem>
           )}
         />
         
-        <Button type="submit" className="w-full md:w-auto">Submit Suggestion</Button>
+        <Button type="submit" className="w-full md:w-auto">Pateikti pasiūlymą</Button>
       </form>
     </Form>
   );

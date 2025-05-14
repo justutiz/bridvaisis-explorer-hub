@@ -8,22 +8,22 @@ const VideoGallery = () => {
     {
       id: 1,
       embedUrl: "https://www.youtube.com/embed/nbqxhm_uIgw?si=OM4lK547W72OhVZR",
-      title: "Lake Bridvaišis Diving #1"
+      title: "Bridvaišio ežeras nardymas #1"
     },
     {
       id: 2,
       embedUrl: "https://www.youtube.com/embed/C0RHm0D1yXg?si=DT7xyUY2ZZAvkpgI",
-      title: "Lake Bridvaišis Diving #2"
+      title: "Bridvaišio ežeras nardymas #2"
     },
     {
       id: 3,
       embedUrl: "https://www.youtube.com/embed/poq4wAHXFGs?si=kihc1_192HcwWdBt",
-      title: "Lake Bridvaišis Diving #3"
+      title: "Bridvaišio ežeras nardymas #3"
     },
     {
       id: 4,
       embedUrl: "https://www.youtube.com/embed/fyMCpd4XkSg?si=NMy2vrH99AuQw5d-",
-      title: "Lake Bridvaišis Diving #4"
+      title: "Bridvaišio ežeras nardymas #4"
     }
   ];
 
