@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, useRef } from "react";
 import { 
   Card, 
@@ -57,7 +56,7 @@ const Index = () => {
   }, [isMobile]);
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-blue-50 to-blue-100">
+    <div className="min-h-screen bg-gradient-to-b from-lake-blue-50 to-lake-teal-100">
       {/* Hero Section with mouse tracking bubbles */}
       <div 
         ref={headerRef}
@@ -82,22 +81,14 @@ const Index = () => {
             <p className="text-lg md:text-xl max-w-2xl mx-auto animate-fade-in animation-delay-300">
               Gražus Lietuvos ežeras žinomas dėl išskirtinių nardymo vietų ir gamtos grožio
             </p>
-            <div className="mt-6 animate-fade-in animation-delay-500">
-              <Button 
-                variant="outline" 
-                className="bg-white text-blue-600 hover:bg-blue-100 hover:text-blue-800 transition-all duration-300"
-                onClick={() => setActiveTab("about")}
-              >
-                Tyrinėti ežerą
-              </Button>
-            </div>
+            {/* Removed "Tyrinėti ežerą" button */}
           </div>
         </div>
       </div>
 
       {/* Modern Mobile menu toggle - Updated z-index to be lower than the menu overlay */}
       {isMobile && (
-        <div className="sticky top-0 z-20 bg-gradient-to-r from-blue-950 to-blue-900 backdrop-blur-sm text-white py-3 px-4 flex justify-between items-center shadow-lg">
+        <div className="sticky top-0 z-20 bg-gradient-to-r from-lake-blue-800 to-lake-teal-700 backdrop-blur-sm text-white py-3 px-4 flex justify-between items-center shadow-lg">
           <h2 className="font-semibold text-gradient">Bridvaišio ežeras</h2>
           <Button 
             variant="ghost" 
@@ -201,7 +192,7 @@ const Index = () => {
                     </p>
                     <div className="mb-6 animate-slide-in animation-delay-400">
                       <Button 
-                        className="bg-blue-600 hover:bg-blue-700 text-white transition-all duration-300 hover:scale-105"
+                        className="bg-lake-blue-600 hover:bg-lake-blue-700 text-white transition-all duration-300 hover:scale-105"
                         onClick={() => window.open("https://lt.wikipedia.org/wiki/Bridvaišis", "_blank")}
                       >
                         Skaityti daugiau Vikipedijoje
@@ -289,7 +280,7 @@ const Index = () => {
                       </p>
                       <div className="mb-6 animate-slide-in animation-delay-400">
                         <Button 
-                          className="bg-blue-600 hover:bg-blue-700 text-white transition-all duration-300"
+                          className="bg-lake-blue-600 hover:bg-lake-blue-700 text-white transition-all duration-300"
                           onClick={() => window.open("https://lt.wikipedia.org/wiki/Bridvaišis", "_blank")}
                         >
                           Skaityti daugiau Vikipedijoje
@@ -359,7 +350,7 @@ const Index = () => {
       </div>
       
       {/* Footer */}
-      <footer className="bg-blue-800 text-white p-6 mt-12 animate-fade-in">
+      <footer className="bg-lake-blue-800 text-white p-6 mt-12 animate-fade-in">
         <div className="container mx-auto text-center">
           <p>&copy; {new Date().getFullYear()} Bridvaišio ežero informacinis puslapis</p>
           <p className="text-sm mt-2">Šis puslapis skirtas dalintis informacija apie Bridvaišio ežerą ir nardymo patirtis jame.</p>

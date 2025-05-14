@@ -1,4 +1,3 @@
-
 import type { Config } from "tailwindcss";
 
 export default {
@@ -20,6 +19,31 @@ export default {
 		},
 		extend: {
 			colors: {
+				// Updated color palette to match hero image colors
+				'lake-blue': {
+					50: '#e6f0f7',
+					100: '#cce0ef',
+					200: '#99c2df',
+					300: '#66a3cf',
+					400: '#3385bf',
+					500: '#0066af',
+					600: '#00528c',
+					700: '#003e69',
+					800: '#002946',
+					900: '#001523',
+				},
+				'lake-teal': {
+					50: '#e6f7f7',
+					100: '#ccefef',
+					200: '#99dfdf',
+					300: '#66cfcf',
+					400: '#33bfbf',
+					500: '#00afaf',
+					600: '#008c8c',
+					700: '#006969',
+					800: '#004646',
+					900: '#002323',
+				},
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
 				ring: 'hsl(var(--ring))',
