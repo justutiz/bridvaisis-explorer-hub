@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, useRef } from "react";
 import { 
   Card, 
@@ -9,9 +8,9 @@ import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 import ImageGallery from "@/components/ImageGallery";
 import VideoGallery from "@/components/VideoGallery";
+import DivingTexts from "./DivingTexts";
 import { Menu, X, ChevronRight, Book } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
-import { Link } from "react-router-dom";
 
 const Index = () => {
   const { toast } = useToast();
@@ -154,7 +153,7 @@ const Index = () => {
         </div>
       </div>
 
-      {/* Mobile menu toggle - updated to match site style */}
+      {/* Mobile menu toggle */}
       {isMobile && (
         <div className="sticky top-0 z-20 bg-lake-blue-800 text-white py-3 px-4 flex justify-between items-center shadow-lg">
           <h2 className="font-semibold">Bridvaišio ežeras</h2>
@@ -171,7 +170,7 @@ const Index = () => {
 
       {/* Main Content */}
       <div className="container mx-auto px-4 py-8">
-        {/* Mobile menu overlay - updated to match site style */}
+        {/* Mobile menu overlay */}
         {isMobile && menuOpen && (
           <div 
             className="fixed inset-0 bg-black/60 z-30 transition-all duration-300" 
@@ -199,31 +198,25 @@ const Index = () => {
                     { id: "about", label: "Apie" },
                     { id: "photos", label: "Momentai" },
                     { id: "videos", label: "Nardymo video" },
-                    { id: "diving-texts", label: "Nardytojų įspūdžiai", isExternal: true, route: "/diving-texts" }
+                    { id: "diving-texts", label: "Nardytojų įspūdžiai", icon: <Book className="h-4 w-4" /> }
                   ].map((tab) => (
                     <button 
                       key={tab.id} 
                       className={`flex items-center justify-between p-3 border-b border-white/10 ${
-                        activeTab === tab.id && !tab.isExternal
+                        activeTab === tab.id
                           ? 'bg-white/10 font-medium' 
                           : 'hover:bg-white/5'
                       }`}
                       onClick={() => {
-                        if (tab.isExternal) {
-                          window.location.href = tab.route;
-                        } else {
-                          setActiveTab(tab.id);
-                          setMenuOpen(false);
-                        }
+                        setActiveTab(tab.id);
+                        setMenuOpen(false);
                       }}
                     >
                       <span className="flex items-center gap-2">
-                        {tab.id === "diving-texts" && <Book className="h-4 w-4" />}
+                        {tab.icon}
                         {tab.label}
                       </span>
-                      {tab.isExternal ? (
-                        <ChevronRight className="h-4 w-4" />
-                      ) : activeTab === tab.id && (
+                      {activeTab === tab.id && (
                         <div className="w-2 h-2 rounded-full bg-lake-teal-400" />
                       )}
                     </button>
@@ -240,11 +233,9 @@ const Index = () => {
             <TabsTrigger value="about">Apie</TabsTrigger>
             <TabsTrigger value="photos">Momentai</TabsTrigger>
             <TabsTrigger value="videos">Nardymo video</TabsTrigger>
-            <TabsTrigger value="diving-texts" asChild>
-              <Link to="/diving-texts" className="w-full flex items-center justify-center gap-2">
-                <Book className="h-4 w-4" />
-                <span>Nardytojų įspūdžiai</span>
-              </Link>
+            <TabsTrigger value="diving-texts" className="flex items-center gap-2">
+              <Book className="h-4 w-4" />
+              <span>Nardytojų įspūdžiai</span>
             </TabsTrigger>
           </TabsList>
           
@@ -318,9 +309,17 @@ const Index = () => {
               </CardContent>
             </Card>
           </TabsContent>
+          
+          <TabsContent value="diving-texts">
+            <Card>
+              <CardContent className="pt-6">
+                <DivingTexts />
+              </CardContent>
+            </Card>
+          </TabsContent>
         </Tabs>
         
-        {/* Mobile content - apply the same transition improvements */}
+        {/* Mobile content */}
         {isMobile && (
           <div className={`space-y-6 transition-all duration-500 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
             {activeTab === "about" && (
@@ -390,6 +389,14 @@ const Index = () => {
                     ir nardymo maršrutus.
                   </p>
                   <VideoGallery />
+                </CardContent>
+              </Card>
+            )}
+            
+            {activeTab === "diving-texts" && (
+              <Card>
+                <CardContent className="pt-6">
+                  <DivingTexts />
                 </CardContent>
               </Card>
             )}
