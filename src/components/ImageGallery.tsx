@@ -48,6 +48,12 @@ const ImageGallery = () => {
       src: "/lovable-uploads/24901f23-4164-47be-9b91-00da2abb38dc.png",
       alt: "Povandeninė būtybė Bridvaišio ežere",
       description: "Paslaptinga povandeninė būtybė aptikta tyrinėjant ežero gelmes"
+    },
+    {
+      id: 8,
+      src: "/lovable-uploads/0f304de0-4ad7-4dbc-b105-cef82c2e9a89.png",
+      alt: "Paskendusi valtis Bridvaišio ežere",
+      description: "Sena medinė valtis ežero dugne, apšviesta povandeninio prožektoriaus"
     }
   ];
 
