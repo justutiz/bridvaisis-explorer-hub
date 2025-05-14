@@ -6,7 +6,6 @@ import BathymetryMap from "./BathymetryMap";
 import BathymetryLoadingOverlay from "./BathymetryLoadingOverlay";
 import { useBathymetryImage } from "@/hooks/useBathymetryImage";
 import { useBathymetryControls } from "@/hooks/useBathymetryControls";
-import { Button } from "../ui/button";
 
 const BathymetryViewer = () => {
   // Use custom hooks for functionality
@@ -21,30 +20,41 @@ const BathymetryViewer = () => {
   const { 
     scale, 
     position, 
+    isFullscreen,
     setPosition, 
     zoomIn, 
     zoomOut, 
     resetView, 
     handleWheel, 
-    handleDownload 
+    handleDownload,
+    toggleFullscreen,
+    handleScaleChange
   } = useBathymetryControls();
 
   return (
-    <div className="space-y-4">
-      <h2 className="text-2xl font-bold mb-6">Detali batimetrija</h2>
-      <p className="mb-4">
-        Interaktyvus Bridvaišio ežero batimetrijos žemėlapis. Naudokite valdiklius arba pelės ratuką priartinti/nutolinti, 
-        tempkite paveikslą norėdami jį pastumti.
-      </p>
+    <div className={`${isFullscreen ? 'fixed inset-0 z-50 bg-background p-4' : 'space-y-4'}`}>
+      {!isFullscreen && (
+        <>
+          <h2 className="text-2xl font-bold mb-6">Detali batimetrija</h2>
+          <p className="mb-4">
+            Interaktyvus Bridvaišio ežero batimetrijos žemėlapis. Naudokite valdiklius arba pelės ratuką priartinti/nutolinti, 
+            tempkite paveikslą norėdami jį pastumti.
+          </p>
+        </>
+      )}
       
       <BathymetryControls 
         onZoomIn={zoomIn}
         onZoomOut={zoomOut}
         onReset={resetView}
         onDownload={handleDownload}
+        onToggleFullscreen={toggleFullscreen}
+        isFullscreen={isFullscreen}
+        scale={scale}
+        onScaleChange={handleScaleChange}
       />
 
-      <Card className="overflow-hidden relative">
+      <Card className={`overflow-hidden relative ${isFullscreen ? 'h-[calc(100%-80px)]' : ''}`}>
         <BathymetryLoadingOverlay 
           loading={loading} 
           loadProgress={loadProgress} 
@@ -52,7 +62,7 @@ const BathymetryViewer = () => {
           onRetry={retryLoading}
         />
         
-        <CardContent className="p-0 overflow-hidden">
+        <CardContent className="p-0 overflow-hidden h-full">
           <BathymetryMap
             loading={loading}
             imageError={imageError}
@@ -62,13 +72,16 @@ const BathymetryViewer = () => {
             onImageLoaded={() => {}}
             onImageError={() => {}}
             imageRef={imageRef}
+            isFullscreen={isFullscreen}
           />
         </CardContent>
       </Card>
       
-      <p className="text-sm text-muted-foreground mt-2">
-        Naudokite pelės ratuką priartinimui/nutolinimui. Tempkite paveikslą norėdami naviguoti.
-      </p>
+      {!isFullscreen && (
+        <p className="text-sm text-muted-foreground mt-2">
+          Naudokite pelės ratuką priartinimui/nutolinimui. Tempkite paveikslą norėdami naviguoti.
+        </p>
+      )}
     </div>
   );
 };

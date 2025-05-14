@@ -10,6 +10,7 @@ interface BathymetryMapProps {
   onImageLoaded: () => void;
   onImageError: () => void;
   imageRef: React.RefObject<HTMLImageElement>;
+  isFullscreen: boolean;
 }
 
 const BathymetryMap: React.FC<BathymetryMapProps> = ({
@@ -21,6 +22,7 @@ const BathymetryMap: React.FC<BathymetryMapProps> = ({
   onImageLoaded,
   onImageError,
   imageRef,
+  isFullscreen,
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [isDragging, setIsDragging] = useState(false);
@@ -96,7 +98,11 @@ const BathymetryMap: React.FC<BathymetryMapProps> = ({
   return (
     <div
       ref={containerRef}
-      className="relative h-[70vh] md:h-[600px] overflow-hidden cursor-grab active:cursor-grabbing touch-none select-none"
+      className={`relative overflow-hidden cursor-grab active:cursor-grabbing touch-none select-none ${
+        isFullscreen 
+          ? "fixed inset-0 z-50 bg-background" 
+          : "h-[70vh] md:h-[600px]"
+      }`}
       onMouseDown={handleMouseDown}
       onMouseMove={handleMouseMove}
       onMouseUp={handleDragEnd}
