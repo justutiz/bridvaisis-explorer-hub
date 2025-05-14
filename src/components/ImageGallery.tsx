@@ -54,6 +54,12 @@ const ImageGallery = () => {
       src: "/lovable-uploads/0f304de0-4ad7-4dbc-b105-cef82c2e9a89.png",
       alt: "Paskendusi valtis Bridvaišio ežere",
       description: "Sena medinė valtis ežero dugne, apšviesta povandeninio prožektoriaus"
+    },
+    {
+      id: 9,
+      src: "/lovable-uploads/cbce118e-f0ca-4709-93e0-a1647693eae9.png",
+      alt: "Žieminis Bridvaišio ežeras",
+      description: "Užšalęs ežeras žiemos metu su nardytojais pralaužtoje eketėje"
     }
   ];
 
