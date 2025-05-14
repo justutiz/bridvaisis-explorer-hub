@@ -48,7 +48,8 @@ const BathymetryControls: React.FC<BathymetryControlsProps> = ({
           </Tooltip>
         </TooltipProvider>
         
-        <div className="flex items-center gap-2 flex-1 px-2 max-w-xs">
+        {/* Modified this div to improve slider width and visibility */}
+        <div className="flex items-center gap-2 flex-1 px-2 min-w-[200px]">
           <TooltipProvider>
             <Tooltip>
               <TooltipTrigger asChild>
@@ -67,7 +68,8 @@ const BathymetryControls: React.FC<BathymetryControlsProps> = ({
             </Tooltip>
           </TooltipProvider>
 
-          <div className="hidden sm:flex items-center gap-2 flex-1">
+          {/* Made the slider container wider and always visible */}
+          <div className="flex items-center gap-2 flex-1 min-w-[150px]">
             <span className="text-xs text-muted-foreground">0.3x</span>
             <Slider 
               value={[scale]}
