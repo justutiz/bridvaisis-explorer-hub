@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 import ImageGallery from "@/components/ImageGallery";
 import VideoGallery from "@/components/VideoGallery";
+import BathymetryViewer from "@/components/BathymetryViewer";
 import DivingTexts from "./DivingTexts";
 import { Menu, X, ChevronRight, ExternalLink } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
@@ -199,29 +200,24 @@ const Index = () => {
                     { id: "photos", label: "Momentai" },
                     { id: "videos", label: "Nardymo video" },
                     { id: "diving-texts", label: "Nardytojų įspūdžiai" },
-                    { id: "bathymetry", label: "Detali batimetrija", external: true, url: "/bridvaisis_bathymetry.png" }
+                    { id: "bathymetry", label: "Detali batimetrija" }
                   ].map((tab) => (
                     <button 
                       key={tab.id} 
                       className={`flex items-center justify-between p-3 border-b border-white/10 ${
-                        activeTab === tab.id && !tab.external
+                        activeTab === tab.id
                           ? 'bg-white/10 font-medium' 
                           : 'hover:bg-white/5'
                       }`}
                       onClick={() => {
-                        if (tab.external) {
-                          window.open(tab.url, '_blank');
-                        } else {
-                          setActiveTab(tab.id);
-                          setMenuOpen(false);
-                        }
+                        setActiveTab(tab.id);
+                        setMenuOpen(false);
                       }}
                     >
                       <span className="flex items-center gap-2">
                         {tab.label}
-                        {tab.external && <ExternalLink className="h-4 w-4" />}
                       </span>
-                      {activeTab === tab.id && !tab.external && (
+                      {activeTab === tab.id && (
                         <div className="w-2 h-2 rounded-full bg-lake-teal-400" />
                       )}
                     </button>
@@ -239,15 +235,7 @@ const Index = () => {
             <TabsTrigger value="photos">Momentai</TabsTrigger>
             <TabsTrigger value="videos">Nardymo video</TabsTrigger>
             <TabsTrigger value="diving-texts">Nardytojų įspūdžiai</TabsTrigger>
-            <TabsTrigger 
-              value="bathymetry" 
-              onClick={(e) => {
-                e.preventDefault();
-                window.open("/bridvaisis_bathymetry.png", "_blank");
-              }}
-            >
-              Detali batimetrija
-            </TabsTrigger>
+            <TabsTrigger value="bathymetry">Detali batimetrija</TabsTrigger>
           </TabsList>
           
           <TabsContent value="about" className={`space-y-6 transition-all duration-500 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
@@ -325,6 +313,14 @@ const Index = () => {
             <Card>
               <CardContent className="pt-6">
                 <DivingTexts />
+              </CardContent>
+            </Card>
+          </TabsContent>
+
+          <TabsContent value="bathymetry">
+            <Card>
+              <CardContent className="pt-6">
+                <BathymetryViewer />
               </CardContent>
             </Card>
           </TabsContent>
@@ -408,6 +404,14 @@ const Index = () => {
               <Card>
                 <CardContent className="pt-6">
                   <DivingTexts />
+                </CardContent>
+              </Card>
+            )}
+            
+            {activeTab === "bathymetry" && (
+              <Card>
+                <CardContent className="pt-6">
+                  <BathymetryViewer />
                 </CardContent>
               </Card>
             )}
