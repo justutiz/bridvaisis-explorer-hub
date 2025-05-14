@@ -10,8 +10,8 @@ const ImageGallery = () => {
     {
       id: 1,
       src: "/lovable-uploads/26234cb5-daf8-4d19-9f18-72129d5dc1bd.png",
-      alt: "Bridvaišio ežero nardymo žemėlapis ir batimetrija",
-      description: "Detalus batimetrinis žemėlapis, rodantis nardymo maršrutus ir gylio kontūrus"
+      alt: "Bridvaišio ežero nardymo žemėlapis ir momentai",
+      description: "Detalus momentų žemėlapis, rodantis nardymo maršrutus ir gylio kontūrus"
     },
     {
       id: 2, 

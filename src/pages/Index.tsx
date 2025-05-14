@@ -196,7 +196,7 @@ const Index = () => {
                 <div className="flex flex-col space-y-1">
                   {[
                     { id: "about", label: "Apie" },
-                    { id: "photos", label: "Batimetrijos žemėlapiai" },
+                    { id: "photos", label: "Momentai" },
                     { id: "videos", label: "Nardymo video" },
                     { id: "contribute", label: "Prisidėti" }
                   ].map((tab) => (
@@ -228,7 +228,7 @@ const Index = () => {
         <Tabs defaultValue="about" value={activeTab} onValueChange={setActiveTab} className={`w-full ${isMobile ? 'hidden' : 'block'} ${isLoaded ? 'opacity-100' : 'opacity-0'} transition-opacity duration-300`}>
           <TabsList className="grid w-full grid-cols-4 mb-8">
             <TabsTrigger value="about">Apie</TabsTrigger>
-            <TabsTrigger value="photos">Batimetrijos žemėlapiai</TabsTrigger>
+            <TabsTrigger value="photos">Momentai</TabsTrigger>
             <TabsTrigger value="videos">Nardymo video</TabsTrigger>
             <TabsTrigger value="contribute">Prisidėti</TabsTrigger>
           </TabsList>
@@ -279,9 +279,9 @@ const Index = () => {
           <TabsContent value="photos">
             <Card>
               <CardContent className="pt-6">
-                <h2 className="text-2xl font-bold mb-6">Batimetrijos žemėlapiai</h2>
+                <h2 className="text-2xl font-bold mb-6">Momentai</h2>
                 <p className="mb-4">
-                  Žemiau pateikti batimetrijos žemėlapiai rodo Bridvaišio ežero povandeninius 
+                  Žemiau pateikti momentai rodo Bridvaišio ežero povandeninius 
                   kontūrus, gylio linijas ir nardymo maršrutus. Paspauskite ant paveikslėlių, 
                   kad juos padidintumėte.
                 </p>
@@ -367,9 +367,9 @@ const Index = () => {
             {activeTab === "photos" && (
               <Card>
                 <CardContent className="pt-6">
-                  <h2 className="text-2xl font-bold mb-6">Batimetrijos žemėlapiai</h2>
+                  <h2 className="text-2xl font-bold mb-6">Momentai</h2>
                   <p className="mb-4">
-                    Žemiau pateikti batimetrijos žemėlapiai rodo Bridvaišio ežero povandeninius 
+                    Žemiau pateikti momentai rodo Bridvaišio ežero povandeninius 
                     kontūrus, gylio linijas ir nardymo maršrutus. Paspauskite ant paveikslėlių, 
                     kad juos padidintumėte.
                   </p>
