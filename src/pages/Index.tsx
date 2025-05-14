@@ -213,7 +213,6 @@ const Index = () => {
                       }}
                     >
                       <span className="flex items-center gap-2">
-                        {tab.icon}
                         {tab.label}
                       </span>
                       {activeTab === tab.id && (
