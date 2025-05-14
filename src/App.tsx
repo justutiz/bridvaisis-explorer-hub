@@ -24,6 +24,7 @@ const App = () => (
             <Route path="/photos" element={<Index />} />
             <Route path="/videos" element={<Index />} />
             <Route path="/diving-texts" element={<DivingTexts />} />
+            <Route path="/diving-text" element={<DivingTexts />} /> {/* Added this route to match both versions */}
             <Route path="/bathymetry" element={<Index />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
