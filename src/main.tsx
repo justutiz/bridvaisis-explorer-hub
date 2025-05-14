@@ -20,7 +20,7 @@ window.gtag = gtag;
 
 // Initialize GTM with a default config
 gtag('js', new Date());
-gtag('config', 'G-MEASUREMENT-ID'); // Replace with your actual Google Tag Manager ID in production
+gtag('config', 'G-XHHTZGK86K'); // Updated with actual Google Tag Manager ID
 
 // Pritaikome tamsią temą dokumentui
 document.documentElement.classList.add('dark');
