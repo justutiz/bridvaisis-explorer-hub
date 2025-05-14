@@ -28,43 +28,7 @@ const BathymetryControls: React.FC<BathymetryControlsProps> = ({
 }) => {
   return (
     <div className="flex flex-col gap-4 mb-4">
-      <div className="flex flex-wrap gap-2">
-        <TooltipProvider>
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <Button 
-                onClick={onZoomIn}
-                size="sm"
-                className="flex items-center gap-1 bg-lake-blue-600 hover:bg-lake-blue-700"
-              >
-                <ZoomIn className="h-4 w-4" />
-                <span className="hidden sm:inline">Priartinti</span>
-              </Button>
-            </TooltipTrigger>
-            <TooltipContent>
-              <p>Priartinti vaizdą</p>
-            </TooltipContent>
-          </Tooltip>
-        </TooltipProvider>
-
-        <TooltipProvider>
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <Button 
-                onClick={onZoomOut}
-                size="sm"
-                className="flex items-center gap-1 bg-lake-blue-600 hover:bg-lake-blue-700"
-              >
-                <ZoomOut className="h-4 w-4" />
-                <span className="hidden sm:inline">Nutolinti</span>
-              </Button>
-            </TooltipTrigger>
-            <TooltipContent>
-              <p>Nutolinti vaizdą</p>
-            </TooltipContent>
-          </Tooltip>
-        </TooltipProvider>
-
+      <div className="flex flex-wrap gap-2 items-center">
         <TooltipProvider>
           <Tooltip>
             <TooltipTrigger asChild>
@@ -84,17 +48,55 @@ const BathymetryControls: React.FC<BathymetryControlsProps> = ({
           </Tooltip>
         </TooltipProvider>
         
-        <div className="hidden sm:flex items-center gap-2 flex-1 px-4 max-w-xs">
-          <span className="text-xs text-muted-foreground">0.2x</span>
-          <Slider 
-            value={[scale]}
-            min={0.2}
-            max={3}
-            step={0.1}
-            onValueChange={onScaleChange}
-            className="flex-1"
-          />
-          <span className="text-xs text-muted-foreground">3x</span>
+        <div className="flex items-center gap-2 flex-1 px-2 max-w-xs">
+          <TooltipProvider>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Button 
+                  onClick={onZoomOut}
+                  size="sm"
+                  className="flex items-center gap-1 bg-lake-blue-600 hover:bg-lake-blue-700"
+                >
+                  <ZoomOut className="h-4 w-4" />
+                  <span className="hidden sm:inline">Nutolinti</span>
+                </Button>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>Nutolinti vaizdą</p>
+              </TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
+
+          <div className="hidden sm:flex items-center gap-2 flex-1">
+            <span className="text-xs text-muted-foreground">0.3x</span>
+            <Slider 
+              value={[scale]}
+              min={0.3}
+              max={1.5}
+              step={0.1}
+              onValueChange={onScaleChange}
+              className="flex-1"
+            />
+            <span className="text-xs text-muted-foreground">1.5x</span>
+          </div>
+
+          <TooltipProvider>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Button 
+                  onClick={onZoomIn}
+                  size="sm"
+                  className="flex items-center gap-1 bg-lake-blue-600 hover:bg-lake-blue-700"
+                >
+                  <ZoomIn className="h-4 w-4" />
+                  <span className="hidden sm:inline">Priartinti</span>
+                </Button>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>Priartinti vaizdą</p>
+              </TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
         </div>
 
         <div className="ml-auto flex gap-2">

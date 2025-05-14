@@ -2,8 +2,9 @@ import { useState, useCallback, useEffect, RefObject } from 'react';
 import { toast } from "sonner";
 
 export const useBathymetryControls = (imageRef?: RefObject<HTMLImageElement>) => {
-  // Changed default scale from 1 to 0.2
-  const [scale, setScale] = useState(0.2);
+  // Changed default scale from 0.2 to 0.3
+  const [scale, setScale] = useState(0.3);
+  // Changed initial position to match top right corner
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [imageDimensions, setImageDimensions] = useState({ width: 0, height: 0 });
@@ -73,8 +74,8 @@ export const useBathymetryControls = (imageRef?: RefObject<HTMLImageElement>) =>
   // Handle zoom in with centered point
   const zoomIn = useCallback((centerX?: number, centerY?: number) => {
     setScale(prev => {
-      // Changed max zoom from 5 to 3
-      const newScale = Math.min(prev + 0.2, 3); 
+      // Changed max zoom from 3 to 1.5
+      const newScale = Math.min(prev + 0.1, 1.5); 
       
       // If center point is provided, zoom toward that point
       if (centerX !== undefined && centerY !== undefined) {
@@ -108,8 +109,8 @@ export const useBathymetryControls = (imageRef?: RefObject<HTMLImageElement>) =>
   // Handle zoom out with centered point
   const zoomOut = useCallback((centerX?: number, centerY?: number) => {
     setScale(prev => {
-      // Keep minimum zoom at 0.2
-      const newScale = Math.max(prev - 0.2, 0.2); 
+      // Keep minimum zoom at 0.3
+      const newScale = Math.max(prev - 0.1, 0.3); 
       
       // If center point is provided, zoom toward that point
       if (centerX !== undefined && centerY !== undefined) {
@@ -142,9 +143,9 @@ export const useBathymetryControls = (imageRef?: RefObject<HTMLImageElement>) =>
 
   // Handle reset
   const resetView = useCallback(() => {
-    // Change reset to use 0.2 scale instead of 1
-    setScale(0.2);
-    setPosition(constrainPosition({ x: 0, y: 0 }, 0.2));
+    // Change reset to use 0.3 scale instead of 0.2
+    setScale(0.3);
+    setPosition(constrainPosition({ x: 0, y: 0 }, 0.3));
     toast.info("Vaizdas atstatytas į pradinę padėtį");
   }, [constrainPosition]);
 
@@ -182,8 +183,8 @@ export const useBathymetryControls = (imageRef?: RefObject<HTMLImageElement>) =>
     const mouseY = e.clientY - rect.top;
     
     setScale(prevScale => {
-      // Changed max zoom from 5 to 3
-      const newScale = Math.max(0.2, Math.min(3, prevScale + delta));
+      // Changed zoom limits from 0.2-3 to 0.3-1.5
+      const newScale = Math.max(0.3, Math.min(1.5, prevScale + delta));
       const zoomFactor = newScale / prevScale;
       
       // Calculate new position to keep the point under cursor
