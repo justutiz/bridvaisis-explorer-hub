@@ -85,16 +85,16 @@ const BathymetryControls: React.FC<BathymetryControlsProps> = ({
         </TooltipProvider>
         
         <div className="hidden sm:flex items-center gap-2 flex-1 px-4 max-w-xs">
-          <span className="text-xs text-muted-foreground">0.5x</span>
+          <span className="text-xs text-muted-foreground">0.2x</span>
           <Slider 
             value={[scale]}
-            min={0.5}
-            max={5}
+            min={0.2}
+            max={3}
             step={0.1}
             onValueChange={onScaleChange}
             className="flex-1"
           />
-          <span className="text-xs text-muted-foreground">5x</span>
+          <span className="text-xs text-muted-foreground">3x</span>
         </div>
 
         <div className="ml-auto flex gap-2">
