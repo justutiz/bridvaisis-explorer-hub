@@ -32,6 +32,14 @@ const BathymetryViewer = () => {
     updateContainerDimensions
   } = useBathymetryControls(imageRef);
 
+  const handleImageLoaded = () => {
+    // This is handled by the useBathymetryImage hook
+  };
+
+  const handleImageError = () => {
+    // This is handled by the useBathymetryImage hook
+  };
+
   return (
     <div className={`${isFullscreen ? 'fixed inset-0 z-50 bg-background p-4' : 'space-y-4'}`}>
       {!isFullscreen && (
@@ -70,8 +78,8 @@ const BathymetryViewer = () => {
             scale={scale}
             position={position}
             onPositionChange={setPosition}
-            onImageLoaded={() => {}}
-            onImageError={() => {}}
+            onImageLoaded={handleImageLoaded}
+            onImageError={handleImageError}
             imageRef={imageRef}
             isFullscreen={isFullscreen}
             onContainerResize={updateContainerDimensions}

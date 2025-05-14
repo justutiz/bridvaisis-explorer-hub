@@ -1,3 +1,4 @@
+
 import { useState, useCallback, useEffect, RefObject } from 'react';
 import { toast } from "sonner";
 
@@ -49,7 +50,7 @@ export const useBathymetryControls = (imageRef?: RefObject<HTMLImageElement>) =>
     let newX = pos.x;
     let newY = pos.y;
 
-    // If image is smaller than container, center it
+    // If image is smaller than container, center it horizontally and vertically
     if (scaledImageWidth <= containerDimensions.width) {
       newX = (containerDimensions.width - scaledImageWidth) / 2;
     } else {

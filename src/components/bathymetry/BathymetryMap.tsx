@@ -136,7 +136,7 @@ const BathymetryMap: React.FC<BathymetryMapProps> = ({
         className={`absolute transform transition-none will-change-transform ${isDragging ? "transition-none" : "duration-100"}`}
         style={{
           transform: `translate(${position.x}px, ${position.y}px) scale(${scale})`,
-          transformOrigin: "center center",
+          transformOrigin: "0 0", // Changed from "center center" to "0 0" for better positioning
           display: loading || imageError ? 'none' : 'block'
         }}
       >
@@ -151,6 +151,8 @@ const BathymetryMap: React.FC<BathymetryMapProps> = ({
           }}
           draggable="false"
           onDragStart={(e) => e.preventDefault()}
+          onLoad={onImageLoaded}
+          onError={onImageError}
         />
       </div>
 
