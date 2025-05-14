@@ -23,8 +23,8 @@ const App = () => (
             <Route path="/about" element={<Index />} />
             <Route path="/photos" element={<Index />} />
             <Route path="/videos" element={<Index />} />
-            <Route path="/diving-texts" element={<DivingTexts />} />
-            <Route path="/diving-text" element={<DivingTexts />} /> {/* Added this route to match both versions */}
+            <Route path="/diving-texts" element={<Index />} />
+            <Route path="/diving-text" element={<Navigate to="/diving-texts" replace />} />
             <Route path="/bathymetry" element={<Index />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />

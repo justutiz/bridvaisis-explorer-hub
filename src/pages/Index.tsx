@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, useRef } from "react";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { useToast } from "@/hooks/use-toast";
@@ -24,6 +23,7 @@ const Index = () => {
   const getTabFromPath = () => {
     const path = location.pathname.substring(1); // Remove leading slash
     if (path === "") return "about"; // Default to about for root path
+    if (path === "diving-text") return "diving-texts"; // Handle both versions
     return path;
   };
   
