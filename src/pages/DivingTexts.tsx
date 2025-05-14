@@ -1,7 +1,8 @@
 
 import React from "react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import ReactMarkdown from "react-markdown";
+import { AspectRatio } from "@/components/ui/aspect-ratio";
 
 // Component that displays diving stories/experiences
 const DivingTexts = () => {
@@ -59,25 +60,33 @@ Tačiau būtent šis ekstremalus derinys Bridvaišį paverčia unikaliu iššūk
           </Card>
         ) : (
           divingTexts.map((text, index) => (
-            <Card key={index} className="mb-4 overflow-hidden">
+            <Card key={index} className="mb-4 overflow-hidden shadow-lg">
               {text.image && (
                 <div className="w-full">
-                  <img 
-                    src={text.image} 
-                    alt={text.title} 
-                    className="w-full h-auto"
-                  />
+                  <AspectRatio ratio={16/9}>
+                    <img 
+                      src={text.image} 
+                      alt={text.title} 
+                      className="w-full h-auto object-cover"
+                    />
+                  </AspectRatio>
                 </div>
               )}
-              <CardHeader>
-                <CardTitle>{text.title}</CardTitle>
-                <p className="text-sm text-muted-foreground">
-                  {text.author}
-                </p>
-              </CardHeader>
-              <CardContent>
+              <CardContent className="p-8">
                 <div className="prose prose-lg max-w-none">
-                  <ReactMarkdown>{text.content}</ReactMarkdown>
+                  <ReactMarkdown
+                    components={{
+                      h1: ({node, ...props}) => <h1 className="text-2xl font-bold mb-4" {...props} />,
+                      h2: ({node, ...props}) => <h2 className="text-xl font-bold mt-6 mb-4" {...props} />,
+                      h3: ({node, ...props}) => <h3 className="text-lg font-bold mt-5 mb-3" {...props} />,
+                      p: ({node, ...props}) => <p className="my-4 text-base leading-relaxed" {...props} />,
+                      strong: ({node, ...props}) => <strong className="font-bold" {...props} />,
+                      ul: ({node, ...props}) => <ul className="my-5 list-disc pl-6" {...props} />,
+                      li: ({node, ...props}) => <li className="mb-2 leading-relaxed" {...props} />,
+                    }}
+                  >
+                    {text.content}
+                  </ReactMarkdown>
                 </div>
               </CardContent>
             </Card>
