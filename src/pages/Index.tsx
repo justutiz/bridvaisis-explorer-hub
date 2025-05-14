@@ -10,7 +10,7 @@ import { useToast } from "@/hooks/use-toast";
 import ImageGallery from "@/components/ImageGallery";
 import VideoGallery from "@/components/VideoGallery";
 import SuggestionForm from "@/components/SuggestionForm";
-import { Menu } from "lucide-react";
+import { Menu, X, ChevronRight } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
 
 const Index = () => {
@@ -95,47 +95,70 @@ const Index = () => {
         </div>
       </div>
 
-      {/* Mobile menu toggle - UPDATED for better readability */}
+      {/* Modern Mobile menu toggle */}
       {isMobile && (
-        <div className="sticky top-0 z-30 bg-blue-900 text-white p-4 flex justify-between items-center">
-          <h2 className="font-semibold">Bridvaišio ežeras</h2>
+        <div className="sticky top-0 z-30 bg-gradient-to-r from-blue-950 to-blue-900 backdrop-blur-sm text-white py-3 px-4 flex justify-between items-center shadow-lg">
+          <h2 className="font-semibold text-gradient">Bridvaišio ežeras</h2>
           <Button 
             variant="ghost" 
-            className="text-white p-1" 
+            className="text-white p-1 hover:bg-white/10 rounded-full" 
             onClick={() => setMenuOpen(!menuOpen)}
             aria-label="Meniu"
           >
-            <Menu className="h-6 w-6" />
+            {menuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </Button>
         </div>
       )}
 
       {/* Main Content */}
       <div className="container mx-auto px-4 py-8">
-        {/* Mobile tabs dropdown - UPDATED for better readability */}
+        {/* Modern Mobile tabs dropdown */}
         {isMobile && menuOpen && (
-          <div className="fixed inset-0 bg-black bg-opacity-60 z-20" onClick={() => setMenuOpen(false)}>
+          <div 
+            className="fixed inset-0 bg-black/70 backdrop-blur-sm z-20 transition-all duration-300" 
+            onClick={() => setMenuOpen(false)}
+          >
             <div 
-              className="bg-blue-950 p-4 w-4/5 h-full transform transition-transform duration-300 animate-slide-in-right"
+              className="neo-blur glass-morphism w-4/5 h-full transform transition-transform duration-300 animate-slide-in-right"
               onClick={(e) => e.stopPropagation()}
             >
-              <div className="flex flex-col space-y-2">
-                {["about", "photos", "videos", "contribute"].map((tab) => (
-                  <Button 
-                    key={tab} 
-                    variant={activeTab === tab ? "default" : "ghost"}
-                    className={`justify-start ${activeTab === tab ? 'bg-blue-700 text-white' : 'text-white hover:bg-blue-800'}`}
-                    onClick={() => {
-                      setActiveTab(tab);
-                      setMenuOpen(false);
-                    }}
-                  >
-                    {tab === "about" && "Apie"}
-                    {tab === "photos" && "Batimetrijos žemėlapiai"}
-                    {tab === "videos" && "Nardymo video"}
-                    {tab === "contribute" && "Prisidėti"}
-                  </Button>
-                ))}
+              <div className="flex flex-col h-full py-10 px-5">
+                <h3 className="text-xl font-bold text-white mb-8 text-gradient">Navigacija</h3>
+                
+                <div className="flex flex-col space-y-3">
+                  {[
+                    { id: "about", label: "Apie" },
+                    { id: "photos", label: "Batimetrijos žemėlapiai" },
+                    { id: "videos", label: "Nardymo video" },
+                    { id: "contribute", label: "Prisidėti" }
+                  ].map((tab) => (
+                    <button 
+                      key={tab.id} 
+                      className={`flex items-center justify-between px-4 py-3 rounded-lg transition-all duration-200 ${
+                        activeTab === tab.id 
+                          ? 'bg-white/20 text-white font-medium animate-pulse-glow' 
+                          : 'text-white/80 hover:bg-white/10'
+                      }`}
+                      onClick={() => {
+                        setActiveTab(tab.id);
+                        setMenuOpen(false);
+                      }}
+                    >
+                      <span>{tab.label}</span>
+                      {activeTab === tab.id ? (
+                        <div className="w-2 h-2 rounded-full bg-white animate-pulse" />
+                      ) : (
+                        <ChevronRight className="h-4 w-4 opacity-60" />
+                      )}
+                    </button>
+                  ))}
+                </div>
+                
+                <div className="mt-auto pt-8 border-t border-white/10">
+                  <p className="text-white/60 text-sm">
+                    &copy; {new Date().getFullYear()} Bridvaišio ežeras
+                  </p>
+                </div>
               </div>
             </div>
           </div>
