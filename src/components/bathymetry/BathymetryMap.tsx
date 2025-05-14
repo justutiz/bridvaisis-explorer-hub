@@ -112,28 +112,26 @@ const BathymetryMap: React.FC<BathymetryMapProps> = ({
       onTouchEnd={handleDragEnd}
       onWheel={handleWheel}
     >
-      {!loading && !imageError && (
-        <div
-          className={`absolute transform transition-none will-change-transform ${isDragging ? "transition-none" : "duration-100"}`}
+      <div
+        className={`absolute transform transition-none will-change-transform ${isDragging ? "transition-none" : "duration-100"}`}
+        style={{
+          transform: `translate(${position.x}px, ${position.y}px) scale(${scale})`,
+          transformOrigin: "center center",
+          display: loading || imageError ? 'none' : 'block'
+        }}
+      >
+        <img
+          ref={imageRef}
+          alt="Bridvaišio ežero batimetrija"
+          className="max-w-none"
           style={{
-            transform: `translate(${position.x}px, ${position.y}px) scale(${scale})`,
-            transformOrigin: "center center",
+            userSelect: 'none',
+            WebkitUserSelect: 'none',
           }}
-        >
-          <img
-            ref={imageRef}
-            alt="Bridvaišio ežero batimetrija"
-            className="max-w-none"
-            style={{
-              visibility: loading ? 'hidden' : 'visible',
-              userSelect: 'none', // Prevent text selection during drag
-              WebkitUserSelect: 'none', // Use WebkitUserSelect instead of WebkitUserDrag
-            }}
-            draggable="false" // Prevent native image dragging
-            onDragStart={(e) => e.preventDefault()} // Extra safety for image drag prevention
-          />
-        </div>
-      )}
+          draggable="false"
+          onDragStart={(e) => e.preventDefault()}
+        />
+      </div>
 
       {/* Add placeholder low-res preview image */}
       {loading && (
