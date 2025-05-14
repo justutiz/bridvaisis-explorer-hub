@@ -1,6 +1,6 @@
 
 import React, { useState } from "react";
-import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogTrigger, DialogTitle } from "@/components/ui/dialog";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 
 const ImageGallery = () => {
@@ -72,14 +72,17 @@ const ImageGallery = () => {
                 </div>
               </div>
             </DialogTrigger>
-            <DialogContent className="max-w-4xl w-[90vw] h-[90vh] p-0 overflow-hidden">
-              <div className="relative w-full h-full overflow-auto">
-                <img
-                  src={image.src}
-                  alt={image.alt}
-                  className="w-full h-auto"
-                />
-                <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-70 text-white p-4">
+            <DialogContent className="max-w-5xl w-[95vw] p-0 overflow-hidden flex items-center justify-center">
+              <DialogTitle className="sr-only">{image.alt}</DialogTitle>
+              <div className="w-full h-full flex flex-col">
+                <div className="relative flex-grow flex items-center justify-center bg-black overflow-hidden">
+                  <img
+                    src={image.src}
+                    alt={image.alt}
+                    className="max-h-[80vh] w-auto h-auto object-contain"
+                  />
+                </div>
+                <div className="bg-black bg-opacity-70 text-white p-4 w-full">
                   <p>{image.description}</p>
                 </div>
               </div>
