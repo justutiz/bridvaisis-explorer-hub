@@ -9,7 +9,7 @@ import { useToast } from "@/hooks/use-toast";
 import ImageGallery from "@/components/ImageGallery";
 import VideoGallery from "@/components/VideoGallery";
 import DivingTexts from "./DivingTexts";
-import { Menu, X, ChevronRight } from "lucide-react";
+import { Menu, X, ChevronRight, ExternalLink } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
 
 const Index = () => {
@@ -220,6 +220,18 @@ const Index = () => {
                       )}
                     </button>
                   ))}
+                  
+                  <a 
+                    href="/bridvaisis_bathymetry.jpg" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-between p-3 border-b border-white/10 hover:bg-white/5"
+                  >
+                    <span className="flex items-center gap-2">
+                      Detali batimetrija
+                      <ExternalLink className="h-4 w-4" />
+                    </span>
+                  </a>
                 </div>
               </div>
             </div>
@@ -234,6 +246,19 @@ const Index = () => {
             <TabsTrigger value="videos">Nardymo video</TabsTrigger>
             <TabsTrigger value="diving-texts">Nardytojų įspūdžiai</TabsTrigger>
           </TabsList>
+          
+          {/* Add bathymetry link button */}
+          <div className="flex justify-end mb-4">
+            <a 
+              href="/bridvaisis_bathymetry.jpg" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 text-lake-blue-600 hover:text-lake-blue-800 transition-colors"
+            >
+              <span>Detali batimetrija</span>
+              <ExternalLink className="h-4 w-4" />
+            </a>
+          </div>
           
           <TabsContent value="about" className={`space-y-6 transition-all duration-500 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
             <Card>
