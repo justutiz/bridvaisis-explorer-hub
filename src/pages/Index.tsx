@@ -8,7 +8,6 @@ import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 import ImageGallery from "@/components/ImageGallery";
 import VideoGallery from "@/components/VideoGallery";
-import SuggestionForm from "@/components/SuggestionForm";
 import { Menu, X, ChevronRight } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
 
@@ -197,8 +196,7 @@ const Index = () => {
                   {[
                     { id: "about", label: "Apie" },
                     { id: "photos", label: "Momentai" },
-                    { id: "videos", label: "Nardymo video" },
-                    { id: "contribute", label: "Prisidėti" }
+                    { id: "videos", label: "Nardymo video" }
                   ].map((tab) => (
                     <button 
                       key={tab.id} 
@@ -226,11 +224,10 @@ const Index = () => {
         
         {/* Desktop tabs */}
         <Tabs defaultValue="about" value={activeTab} onValueChange={setActiveTab} className={`w-full ${isMobile ? 'hidden' : 'block'} ${isLoaded ? 'opacity-100' : 'opacity-0'} transition-opacity duration-300`}>
-          <TabsList className="grid w-full grid-cols-4 mb-8">
+          <TabsList className="grid w-full grid-cols-3 mb-8">
             <TabsTrigger value="about">Apie</TabsTrigger>
             <TabsTrigger value="photos">Momentai</TabsTrigger>
             <TabsTrigger value="videos">Nardymo video</TabsTrigger>
-            <TabsTrigger value="contribute">Prisidėti</TabsTrigger>
           </TabsList>
           
           <TabsContent value="about" className={`space-y-6 transition-all duration-500 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
@@ -300,19 +297,6 @@ const Index = () => {
                   ir nardymo maršrutus.
                 </p>
                 <VideoGallery />
-              </CardContent>
-            </Card>
-          </TabsContent>
-          
-          <TabsContent value="contribute">
-            <Card>
-              <CardContent className="pt-6">
-                <h2 className="text-2xl font-bold mb-6">Prisidėkite prie šio puslapio</h2>
-                <p className="mb-4">
-                  Turite pasiūlymų dėl patobulinimų, naujų vaizdo įrašų, nuotraukų ar informacijos 
-                  apie Bridvaišio ežerą? Prašome užpildyti žemiau esančią formą ir prisidėti.
-                </p>
-                <SuggestionForm />
               </CardContent>
             </Card>
           </TabsContent>
@@ -388,19 +372,6 @@ const Index = () => {
                     ir nardymo maršrutus.
                   </p>
                   <VideoGallery />
-                </CardContent>
-              </Card>
-            )}
-            
-            {activeTab === "contribute" && (
-              <Card>
-                <CardContent className="pt-6">
-                  <h2 className="text-2xl font-bold mb-6">Prisidėkite prie šio puslapio</h2>
-                  <p className="mb-4">
-                    Turite pasiūlymų dėl patobulinimų, naujų vaizdo įrašų, nuotraukų ar informacijos 
-                    apie Bridvaišio ežerą? Prašome užpildyti žemiau esančią formą ir prisidėti.
-                  </p>
-                  <SuggestionForm />
                 </CardContent>
               </Card>
             )}
