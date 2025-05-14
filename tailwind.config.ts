@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -84,11 +85,41 @@ export default {
 					to: {
 						height: '0'
 					}
+				},
+				'glow': {
+					'0%, 100%': { 
+						boxShadow: '0 0 10px rgba(148, 174, 213, 0.8)' 
+					},
+					'50%': { 
+						boxShadow: '0 0 25px rgba(148, 174, 213, 0.5)' 
+					}
+				},
+				'morph': {
+					'0%': { 
+						borderRadius: '60% 40% 30% 70%/60% 30% 70% 40%' 
+					},
+					'50%': { 
+						borderRadius: '30% 60% 70% 40%/50% 60% 30% 60%' 
+					},
+					'100%': { 
+						borderRadius: '60% 40% 30% 70%/60% 30% 70% 40%' 
+					}
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'glow': 'glow 4s ease-in-out infinite',
+				'morph': 'morph 8s ease-in-out infinite'
+			},
+			backdropFilter: {
+				'none': 'none',
+				'blur': 'blur(20px)'
+			},
+			boxShadow: {
+				'neon': '0 0 5px theme(colors.blue.200), 0 0 20px theme(colors.blue.700)',
+				'glass': '0 8px 32px rgba(0, 0, 0, 0.1)',
+				'modern': '0 20px 80px -20px rgba(0,0,0,0.1)'
 			}
 		}
 	},
