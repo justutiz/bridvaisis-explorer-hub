@@ -15,15 +15,33 @@ const ImageGallery = () => {
     },
     {
       id: 2, 
-      src: "https://images.unsplash.com/photo-1504893524553-b855bce32c67",
-      alt: "Bridvaišio ežero povandeninis kraštovaizdis",
-      description: "Upė, apsupta uolų formacijų Bridvaišio ežere"
+      src: "/lovable-uploads/cfd67dc6-0125-4fd6-8cb6-91d7d208269e.png",
+      alt: "Povandeninės kėdės Bridvaišio ežere",
+      description: "Povandeninės kėdės ir objektai ant ežero dugno"
     },
     {
       id: 3,
-      src: "https://images.unsplash.com/photo-1472396961693-142e6e269027",
-      alt: "Bridvaišio ežero gyvūnija",
-      description: "Gyvūnija netoli Bridvaišio ežero"
+      src: "/lovable-uploads/73a9e4ef-aa8e-4700-996d-1c92c2c6a8b9.png",
+      alt: "Senovinis ratas Bridvaišio ežere",
+      description: "Povandeninis archeologinis radinys - senovinis medinis ratas"
+    },
+    {
+      id: 4,
+      src: "/lovable-uploads/17ae0b68-a6ef-4239-b429-79ac419a07b2.png",
+      alt: "Povandeninis gyvūnas Bridvaišio ežere",
+      description: "Ežero fauna apšviesta nardytojo prožektoriumi"
+    },
+    {
+      id: 5,
+      src: "/lovable-uploads/f6a6302d-28a9-445f-98c4-a2d685311fc4.png",
+      alt: "Povandeninis kompiuteris Bridvaišio ežere",
+      description: "Neįprastas radinys - senovinis kompiuteris po vandeniu"
+    },
+    {
+      id: 6,
+      src: "/lovable-uploads/579660c0-a3d6-4aaf-acb5-b45a65dd5063.png",
+      alt: "Bridvaišio ežero žuvis",
+      description: "Ežero žuvis tarp povandeninių uolų ir augalijos"
     }
   ];
 
