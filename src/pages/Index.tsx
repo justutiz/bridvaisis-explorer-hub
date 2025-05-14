@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect, useRef } from "react";
 import { 
   Card, 
@@ -121,6 +122,16 @@ const Index = () => {
               className="neo-blur glass-morphism w-4/5 h-full transform transition-transform duration-300 animate-slide-in-right"
               onClick={(e) => e.stopPropagation()}
             >
+              {/* New close button at the top right of the menu */}
+              <Button
+                variant="ghost"
+                className="absolute top-2 right-2 text-white hover:bg-white/10 p-2 rounded-full transition-all duration-300"
+                onClick={() => setMenuOpen(false)}
+                aria-label="Uždaryti meniu"
+              >
+                <X className="h-6 w-6" />
+              </Button>
+              
               <div className="flex flex-col h-full py-10 px-5">
                 <h3 className="text-xl font-bold text-white mb-8 text-gradient">Navigacija</h3>
                 
