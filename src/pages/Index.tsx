@@ -199,7 +199,7 @@ const Index = () => {
                     { id: "photos", label: "Momentai" },
                     { id: "videos", label: "Nardymo video" },
                     { id: "diving-texts", label: "Nardytojų įspūdžiai" },
-                    { id: "bathymetry", label: "Detali batimetrija", external: true, url: "/bridvaisis_bathymetry.jpg" }
+                    { id: "bathymetry", label: "Detali batimetrija", external: true, url: "/bridvaisis_bathymetry.png" }
                   ].map((tab) => (
                     <button 
                       key={tab.id} 
@@ -243,7 +243,7 @@ const Index = () => {
               value="bathymetry" 
               onClick={(e) => {
                 e.preventDefault();
-                window.open("/bridvaisis_bathymetry.jpg", "_blank");
+                window.open("/bridvaisis_bathymetry.png", "_blank");
               }}
             >
               Detali batimetrija
