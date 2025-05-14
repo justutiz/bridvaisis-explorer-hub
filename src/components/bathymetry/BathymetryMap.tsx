@@ -57,6 +57,23 @@ const BathymetryMap: React.FC<BathymetryMapProps> = ({
     };
   }, [onContainerResize, isFullscreen]);
 
+  // Prevent page scrolling when the map container is in focus
+  useEffect(() => {
+    const preventScroll = (e: WheelEvent) => {
+      const container = containerRef.current;
+      if (container && container.contains(e.target as Node)) {
+        e.preventDefault();
+      }
+    };
+
+    // Add passive: false to override default browser behavior
+    window.addEventListener('wheel', preventScroll, { passive: false });
+    
+    return () => {
+      window.removeEventListener('wheel', preventScroll);
+    };
+  }, []);
+
   // Handle mouse down for dragging
   const handleMouseDown = (e: React.MouseEvent) => {
     if (e.button !== 0) return; // Only left mouse button
@@ -115,6 +132,12 @@ const BathymetryMap: React.FC<BathymetryMapProps> = ({
     setIsDragging(false);
   };
 
+  // Custom wheel event handler that prevents default and calls the provided handler
+  const handleWheelEvent = (e: React.WheelEvent) => {
+    e.preventDefault();
+    onWheel(e);
+  };
+
   return (
     <div
       ref={containerRef}
@@ -130,7 +153,7 @@ const BathymetryMap: React.FC<BathymetryMapProps> = ({
       onTouchStart={handleTouchStart}
       onTouchMove={handleTouchMove}
       onTouchEnd={handleDragEnd}
-      onWheel={onWheel}
+      onWheel={handleWheelEvent}
     >
       <div
         className={`absolute transform transition-none will-change-transform ${isDragging ? "transition-none" : "duration-100"}`}
