@@ -28,8 +28,9 @@ const BathymetryViewer = () => {
     handleWheel, 
     handleDownload,
     toggleFullscreen,
-    handleScaleChange
-  } = useBathymetryControls();
+    handleScaleChange,
+    updateContainerDimensions
+  } = useBathymetryControls(imageRef);
 
   return (
     <div className={`${isFullscreen ? 'fixed inset-0 z-50 bg-background p-4' : 'space-y-4'}`}>
@@ -44,8 +45,8 @@ const BathymetryViewer = () => {
       )}
       
       <BathymetryControls 
-        onZoomIn={zoomIn}
-        onZoomOut={zoomOut}
+        onZoomIn={() => zoomIn()}
+        onZoomOut={() => zoomOut()}
         onReset={resetView}
         onDownload={handleDownload}
         onToggleFullscreen={toggleFullscreen}
@@ -73,6 +74,8 @@ const BathymetryViewer = () => {
             onImageError={() => {}}
             imageRef={imageRef}
             isFullscreen={isFullscreen}
+            onContainerResize={updateContainerDimensions}
+            onWheel={handleWheel}
           />
         </CardContent>
       </Card>

@@ -11,6 +11,8 @@ interface BathymetryMapProps {
   onImageError: () => void;
   imageRef: React.RefObject<HTMLImageElement>;
   isFullscreen: boolean;
+  onContainerResize: (width: number, height: number) => void;
+  onWheel: (e: React.WheelEvent) => void;
 }
 
 const BathymetryMap: React.FC<BathymetryMapProps> = ({
@@ -23,10 +25,37 @@ const BathymetryMap: React.FC<BathymetryMapProps> = ({
   onImageError,
   imageRef,
   isFullscreen,
+  onContainerResize,
+  onWheel,
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [isDragging, setIsDragging] = useState(false);
   const [dragStart, setDragStart] = useState({ x: 0, y: 0 });
+
+  // Update container dimensions when size changes
+  useEffect(() => {
+    if (!containerRef.current) return;
+
+    const updateSize = () => {
+      if (containerRef.current) {
+        const { width, height } = containerRef.current.getBoundingClientRect();
+        onContainerResize(width, height);
+      }
+    };
+
+    // Set initial size
+    updateSize();
+
+    // Add resize observer
+    const resizeObserver = new ResizeObserver(updateSize);
+    resizeObserver.observe(containerRef.current);
+
+    return () => {
+      if (containerRef.current) {
+        resizeObserver.unobserve(containerRef.current);
+      }
+    };
+  }, [onContainerResize]);
 
   // Handle mouse down for dragging
   const handleMouseDown = (e: React.MouseEvent) => {
@@ -86,15 +115,6 @@ const BathymetryMap: React.FC<BathymetryMapProps> = ({
     setIsDragging(false);
   };
 
-  // Handle wheel zoom with improved smoothness
-  const handleWheel = (e: React.WheelEvent) => {
-    e.preventDefault();
-    const delta = -e.deltaY / 500;
-    const newScale = Math.max(0.5, Math.min(5, scale + delta)); // Limit scale between 0.5 and 5
-    // This will be handled in parent component via useZoom hook
-    // Update scale in parent component
-  };
-
   return (
     <div
       ref={containerRef}
@@ -110,7 +130,7 @@ const BathymetryMap: React.FC<BathymetryMapProps> = ({
       onTouchStart={handleTouchStart}
       onTouchMove={handleTouchMove}
       onTouchEnd={handleDragEnd}
-      onWheel={handleWheel}
+      onWheel={onWheel}
     >
       <div
         className={`absolute transform transition-none will-change-transform ${isDragging ? "transition-none" : "duration-100"}`}
