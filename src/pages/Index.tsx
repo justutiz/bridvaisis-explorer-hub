@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, useRef } from "react";
 import { 
   Card, 
@@ -95,9 +94,9 @@ const Index = () => {
         </div>
       </div>
 
-      {/* Modern Mobile menu toggle */}
+      {/* Modern Mobile menu toggle - Updated z-index to be lower than the menu overlay */}
       {isMobile && (
-        <div className="sticky top-0 z-30 bg-gradient-to-r from-blue-950 to-blue-900 backdrop-blur-sm text-white py-3 px-4 flex justify-between items-center shadow-lg">
+        <div className="sticky top-0 z-20 bg-gradient-to-r from-blue-950 to-blue-900 backdrop-blur-sm text-white py-3 px-4 flex justify-between items-center shadow-lg">
           <h2 className="font-semibold text-gradient">Bridvaišio ežeras</h2>
           <Button 
             variant="ghost" 
@@ -112,10 +111,10 @@ const Index = () => {
 
       {/* Main Content */}
       <div className="container mx-auto px-4 py-8">
-        {/* Modern Mobile tabs dropdown */}
+        {/* Modern Mobile tabs dropdown - Updated z-index to be higher than the menu toggle */}
         {isMobile && menuOpen && (
           <div 
-            className="fixed inset-0 bg-black/70 backdrop-blur-sm z-20 transition-all duration-300" 
+            className="fixed inset-0 bg-black/70 backdrop-blur-sm z-30 transition-all duration-300" 
             onClick={() => setMenuOpen(false)}
           >
             <div 
@@ -163,7 +162,7 @@ const Index = () => {
             </div>
           </div>
         )}
-
+        
         {/* Desktop tabs */}
         <Tabs defaultValue="about" value={activeTab} onValueChange={setActiveTab} className={`w-full ${isMobile ? 'hidden' : 'block'}`}>
           <TabsList className="grid w-full grid-cols-4 mb-8 animate-fade-in">
