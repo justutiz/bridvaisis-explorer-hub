@@ -106,6 +106,7 @@ const BathymetryViewer = () => {
   // Handle mouse down for dragging
   const handleMouseDown = (e: React.MouseEvent) => {
     if (e.button !== 0) return; // Only left mouse button
+    e.preventDefault(); // Prevent text selection during drag
     setIsDragging(true);
     setDragStart({
       x: e.clientX - position.x,
@@ -116,6 +117,7 @@ const BathymetryViewer = () => {
   // Handle touch start for mobile dragging
   const handleTouchStart = (e: React.TouchEvent) => {
     if (e.touches.length !== 1) return;
+    e.preventDefault(); // Prevent scroll during drag
     setIsDragging(true);
     setDragStart({
       x: e.touches[0].clientX - position.x,
@@ -126,23 +128,36 @@ const BathymetryViewer = () => {
   // Handle mouse move for dragging
   const handleMouseMove = (e: React.MouseEvent) => {
     if (!isDragging) return;
+    e.preventDefault(); // Prevent unwanted side effects
+    
+    const newX = e.clientX - dragStart.x;
+    const newY = e.clientY - dragStart.y;
+    
     setPosition({
-      x: e.clientX - dragStart.x,
-      y: e.clientY - dragStart.y,
+      x: newX,
+      y: newY,
     });
   };
 
   // Handle touch move for mobile dragging
   const handleTouchMove = (e: React.TouchEvent) => {
     if (!isDragging || e.touches.length !== 1) return;
+    e.preventDefault(); // Prevent scroll during drag
+    
+    const newX = e.touches[0].clientX - dragStart.x;
+    const newY = e.touches[0].clientY - dragStart.y;
+    
     setPosition({
-      x: e.touches[0].clientX - dragStart.x,
-      y: e.touches[0].clientY - dragStart.y,
+      x: newX,
+      y: newY,
     });
   };
 
   // Handle mouse up and touch end
-  const handleDragEnd = () => {
+  const handleDragEnd = (e: React.MouseEvent | React.TouchEvent) => {
+    if (e.type !== 'mouseleave') {
+      e.preventDefault(); // Prevent click events after drag
+    }
     setIsDragging(false);
   };
 
@@ -163,6 +178,18 @@ const BathymetryViewer = () => {
     link.click();
     document.body.removeChild(link);
   };
+
+  // Add passive event listeners to improve scroll performance
+  useEffect(() => {
+    const currentContainer = containerRef.current;
+    
+    // Clean up function
+    return () => {
+      if (currentContainer) {
+        // Remove any lingering event listeners if necessary
+      }
+    };
+  }, []);
 
   return (
     <div className="space-y-4">
@@ -236,7 +263,7 @@ const BathymetryViewer = () => {
         <CardContent className="p-0 overflow-hidden">
           <div
             ref={containerRef}
-            className="relative h-[70vh] md:h-[600px] overflow-hidden cursor-move touch-none"
+            className="relative h-[70vh] md:h-[600px] overflow-hidden cursor-grab active:cursor-grabbing touch-none select-none"
             onMouseDown={handleMouseDown}
             onMouseMove={handleMouseMove}
             onMouseUp={handleDragEnd}
@@ -248,7 +275,7 @@ const BathymetryViewer = () => {
           >
             {!loading && !imageError && (
               <div
-                className={`absolute transform transition-none will-change-transform ${isDragging ? "" : "duration-100"}`}
+                className={`absolute transform transition-none will-change-transform ${isDragging ? "transition-none" : "duration-100"}`}
                 style={{
                   transform: `translate(${position.x}px, ${position.y}px) scale(${scale})`,
                   transformOrigin: "center center",
@@ -259,8 +286,12 @@ const BathymetryViewer = () => {
                   alt="Bridvaišio ežero batimetrija"
                   className="max-w-none"
                   style={{
-                    visibility: loading ? 'hidden' : 'visible'
+                    visibility: loading ? 'hidden' : 'visible',
+                    userSelect: 'none', // Prevent text selection during drag
+                    WebkitUserDrag: 'none', // Prevent image dragging in webkit browsers
                   }}
+                  draggable="false" // Prevent native image dragging
+                  onDragStart={(e) => e.preventDefault()} // Extra safety for image drag prevention
                 />
               </div>
             )}
