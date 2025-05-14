@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect, useRef } from "react";
 import { 
   Card, 
@@ -8,8 +9,9 @@ import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 import ImageGallery from "@/components/ImageGallery";
 import VideoGallery from "@/components/VideoGallery";
-import { Menu, X, ChevronRight } from "lucide-react";
+import { Menu, X, ChevronRight, Book } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { Link } from "react-router-dom";
 
 const Index = () => {
   const { toast } = useToast();
@@ -196,22 +198,32 @@ const Index = () => {
                   {[
                     { id: "about", label: "Apie" },
                     { id: "photos", label: "Momentai" },
-                    { id: "videos", label: "Nardymo video" }
+                    { id: "videos", label: "Nardymo video" },
+                    { id: "diving-texts", label: "Nardytojų įspūdžiai", isExternal: true, route: "/diving-texts" }
                   ].map((tab) => (
                     <button 
                       key={tab.id} 
                       className={`flex items-center justify-between p-3 border-b border-white/10 ${
-                        activeTab === tab.id 
+                        activeTab === tab.id && !tab.isExternal
                           ? 'bg-white/10 font-medium' 
                           : 'hover:bg-white/5'
                       }`}
                       onClick={() => {
-                        setActiveTab(tab.id);
-                        setMenuOpen(false);
+                        if (tab.isExternal) {
+                          window.location.href = tab.route;
+                        } else {
+                          setActiveTab(tab.id);
+                          setMenuOpen(false);
+                        }
                       }}
                     >
-                      <span>{tab.label}</span>
-                      {activeTab === tab.id && (
+                      <span className="flex items-center gap-2">
+                        {tab.id === "diving-texts" && <Book className="h-4 w-4" />}
+                        {tab.label}
+                      </span>
+                      {tab.isExternal ? (
+                        <ChevronRight className="h-4 w-4" />
+                      ) : activeTab === tab.id && (
                         <div className="w-2 h-2 rounded-full bg-lake-teal-400" />
                       )}
                     </button>
@@ -224,10 +236,16 @@ const Index = () => {
         
         {/* Desktop tabs */}
         <Tabs defaultValue="about" value={activeTab} onValueChange={setActiveTab} className={`w-full ${isMobile ? 'hidden' : 'block'} ${isLoaded ? 'opacity-100' : 'opacity-0'} transition-opacity duration-300`}>
-          <TabsList className="grid w-full grid-cols-3 mb-8">
+          <TabsList className="grid w-full grid-cols-4 mb-8">
             <TabsTrigger value="about">Apie</TabsTrigger>
             <TabsTrigger value="photos">Momentai</TabsTrigger>
             <TabsTrigger value="videos">Nardymo video</TabsTrigger>
+            <TabsTrigger value="diving-texts" asChild>
+              <Link to="/diving-texts" className="w-full flex items-center justify-center gap-2">
+                <Book className="h-4 w-4" />
+                <span>Nardytojų įspūdžiai</span>
+              </Link>
+            </TabsTrigger>
           </TabsList>
           
           <TabsContent value="about" className={`space-y-6 transition-all duration-500 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
