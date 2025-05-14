@@ -63,14 +63,12 @@ Tačiau būtent šis ekstremalus derinys Bridvaišį paverčia unikaliu iššūk
             <Card key={index} className="mb-4 overflow-hidden shadow-lg">
               <div className="grid grid-cols-1 gap-6">
                 {text.image && (
-                  <div className="max-h-[240px] overflow-hidden border-b border-border">
-                    <AspectRatio ratio={16/9} className="relative">
-                      <img 
-                        src={text.image} 
-                        alt={text.title} 
-                        className="w-full h-full object-contain bg-[#0a3b0a]"
-                      />
-                    </AspectRatio>
+                  <div className="border-b border-border">
+                    <img 
+                      src={text.image} 
+                      alt={text.title} 
+                      className="w-full h-auto object-contain bg-[#0a3b0a]"
+                    />
                   </div>
                 )}
                 <CardContent className="p-8 pt-6">
