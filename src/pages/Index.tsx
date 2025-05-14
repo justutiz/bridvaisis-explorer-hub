@@ -250,19 +250,6 @@ const Index = () => {
             </TabsTrigger>
           </TabsList>
           
-          {/* Add bathymetry link button */}
-          <div className="flex justify-end mb-4">
-            <a 
-              href="/bridvaisis_bathymetry.jpg" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 text-lake-blue-600 hover:text-lake-blue-800 transition-colors"
-            >
-              <span>Detali batimetrija</span>
-              <ExternalLink className="h-4 w-4" />
-            </a>
-          </div>
-          
           <TabsContent value="about" className={`space-y-6 transition-all duration-500 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
             <Card>
               <CardContent className="pt-6">
