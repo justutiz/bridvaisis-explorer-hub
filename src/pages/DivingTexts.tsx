@@ -36,7 +36,7 @@ Tačiau būtent šis ekstremalus derinys Bridvaišį paverčia unikaliu iššūk
 **Svarbus perspėjimas:** šis ežeras – ne pradedantiesiems. Dėl staigaus nuolydžio ir ypač tamsaus vandens čia nardyti saugu tik gerai pasiruošus. Jei vis dar mokaisi suvaldyti plūdrumą – geriau pradėti nuo paprastesnių vietų.
 
 **Kada geriausia nerti?** Žiemą. Kuo šaltesnis vanduo, tuo skaidresnis jis tampa. O kartu – ir Bridvaišio paslaptys lengviau atsiskleidžia...`,
-      image: "/lovable-uploads/dfcd077b-6da7-4bb1-bbdb-51a44e6ad22a.png"
+      image: "/lovable-uploads/fae03c4f-38e3-4ed1-9368-dcd7ae090e58.png"
     }
   ];
 
@@ -61,19 +61,19 @@ Tačiau būtent šis ekstremalus derinys Bridvaišį paverčia unikaliu iššūk
         ) : (
           divingTexts.map((text, index) => (
             <Card key={index} className="mb-4 overflow-hidden shadow-lg">
-              <div className="grid grid-cols-1 gap-0">
+              <div className="grid grid-cols-1 gap-6">
                 {text.image && (
-                  <div className="w-full max-h-[300px] overflow-hidden">
-                    <AspectRatio ratio={21/9} className="relative">
+                  <div className="max-h-[240px] overflow-hidden border-b border-border">
+                    <AspectRatio ratio={16/9} className="relative">
                       <img 
                         src={text.image} 
                         alt={text.title} 
-                        className="w-full h-full object-cover"
+                        className="w-full h-full object-contain bg-[#0a3b0a]"
                       />
                     </AspectRatio>
                   </div>
                 )}
-                <CardContent className="p-8 pt-10">
+                <CardContent className="p-8 pt-6">
                   <div className="prose prose-lg max-w-none">
                     <ReactMarkdown
                       components={{
