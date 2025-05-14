@@ -95,9 +95,9 @@ const Index = () => {
         </div>
       </div>
 
-      {/* Mobile menu toggle */}
+      {/* Mobile menu toggle - UPDATED for better readability */}
       {isMobile && (
-        <div className="sticky top-0 z-30 bg-blue-600 text-white p-4 flex justify-between items-center">
+        <div className="sticky top-0 z-30 bg-blue-900 text-white p-4 flex justify-between items-center">
           <h2 className="font-semibold">Bridvaišio ežeras</h2>
           <Button 
             variant="ghost" 
@@ -112,11 +112,11 @@ const Index = () => {
 
       {/* Main Content */}
       <div className="container mx-auto px-4 py-8">
-        {/* Mobile tabs dropdown */}
+        {/* Mobile tabs dropdown - UPDATED for better readability */}
         {isMobile && menuOpen && (
-          <div className="fixed inset-0 bg-black bg-opacity-50 z-20" onClick={() => setMenuOpen(false)}>
+          <div className="fixed inset-0 bg-black bg-opacity-60 z-20" onClick={() => setMenuOpen(false)}>
             <div 
-              className="bg-white p-4 w-4/5 h-full transform transition-transform duration-300 animate-slide-in-right"
+              className="bg-blue-950 p-4 w-4/5 h-full transform transition-transform duration-300 animate-slide-in-right"
               onClick={(e) => e.stopPropagation()}
             >
               <div className="flex flex-col space-y-2">
@@ -124,7 +124,7 @@ const Index = () => {
                   <Button 
                     key={tab} 
                     variant={activeTab === tab ? "default" : "ghost"}
-                    className="justify-start"
+                    className={`justify-start ${activeTab === tab ? 'bg-blue-700 text-white' : 'text-white hover:bg-blue-800'}`}
                     onClick={() => {
                       setActiveTab(tab);
                       setMenuOpen(false);
