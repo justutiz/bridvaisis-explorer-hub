@@ -81,15 +81,14 @@ const Index = () => {
             <p className="text-lg md:text-xl max-w-2xl mx-auto animate-fade-in animation-delay-300">
               Gražus Lietuvos ežeras žinomas dėl išskirtinių nardymo vietų ir gamtos grožio
             </p>
-            {/* Removed "Tyrinėti ežerą" button */}
           </div>
         </div>
       </div>
 
-      {/* Modern Mobile menu toggle - Updated z-index to be lower than the menu overlay */}
+      {/* Mobile menu toggle - updated to match site style */}
       {isMobile && (
-        <div className="sticky top-0 z-20 bg-gradient-to-r from-lake-blue-800 to-lake-teal-700 backdrop-blur-sm text-white py-3 px-4 flex justify-between items-center shadow-lg">
-          <h2 className="font-semibold text-gradient">Bridvaišio ežeras</h2>
+        <div className="sticky top-0 z-20 bg-lake-blue-800 text-white py-3 px-4 flex justify-between items-center shadow-lg">
+          <h2 className="font-semibold">Bridvaišio ežeras</h2>
           <Button 
             variant="ghost" 
             className="text-white p-1 hover:bg-white/10 rounded-full" 
@@ -103,30 +102,30 @@ const Index = () => {
 
       {/* Main Content */}
       <div className="container mx-auto px-4 py-8">
-        {/* Modern Mobile tabs dropdown - Updated z-index to be higher than the menu toggle */}
+        {/* Mobile menu overlay - updated to match site style */}
         {isMobile && menuOpen && (
           <div 
-            className="fixed inset-0 bg-black/70 backdrop-blur-sm z-30 transition-all duration-300" 
+            className="fixed inset-0 bg-black/60 z-30 transition-all duration-300" 
             onClick={() => setMenuOpen(false)}
           >
             <div 
-              className="neo-blur glass-morphism w-4/5 h-full transform transition-transform duration-300 animate-slide-in-right"
+              className="w-full md:w-3/4 h-auto max-h-[80vh] rounded-b-lg bg-lake-blue-800 text-white shadow-lg transform transition-transform duration-300 overflow-auto"
               onClick={(e) => e.stopPropagation()}
             >
-              {/* New close button at the top right of the menu */}
-              <Button
-                variant="ghost"
-                className="absolute top-2 right-2 text-white hover:bg-white/10 p-2 rounded-full transition-all duration-300"
-                onClick={() => setMenuOpen(false)}
-                aria-label="Uždaryti meniu"
-              >
-                <X className="h-6 w-6" />
-              </Button>
+              <div className="flex justify-between items-center p-4 border-b border-white/20">
+                <h3 className="text-xl font-bold">Navigacija</h3>
+                <Button
+                  variant="ghost"
+                  className="text-white hover:bg-white/10 p-1 rounded-full transition-all"
+                  onClick={() => setMenuOpen(false)}
+                  aria-label="Uždaryti meniu"
+                >
+                  <X className="h-6 w-6" />
+                </Button>
+              </div>
               
-              <div className="flex flex-col h-full py-10 px-5">
-                <h3 className="text-xl font-bold text-white mb-8 text-gradient">Navigacija</h3>
-                
-                <div className="flex flex-col space-y-3">
+              <div className="p-4">
+                <div className="flex flex-col space-y-1">
                   {[
                     { id: "about", label: "Apie" },
                     { id: "photos", label: "Batimetrijos žemėlapiai" },
@@ -135,10 +134,10 @@ const Index = () => {
                   ].map((tab) => (
                     <button 
                       key={tab.id} 
-                      className={`flex items-center justify-between px-4 py-3 rounded-lg transition-all duration-200 ${
+                      className={`flex items-center justify-between p-3 border-b border-white/10 ${
                         activeTab === tab.id 
-                          ? 'bg-white/20 text-white font-medium animate-pulse-glow' 
-                          : 'text-white/80 hover:bg-white/10'
+                          ? 'bg-white/10 font-medium' 
+                          : 'hover:bg-white/5'
                       }`}
                       onClick={() => {
                         setActiveTab(tab.id);
@@ -146,19 +145,11 @@ const Index = () => {
                       }}
                     >
                       <span>{tab.label}</span>
-                      {activeTab === tab.id ? (
-                        <div className="w-2 h-2 rounded-full bg-white animate-pulse" />
-                      ) : (
-                        <ChevronRight className="h-4 w-4 opacity-60" />
+                      {activeTab === tab.id && (
+                        <div className="w-2 h-2 rounded-full bg-lake-teal-400" />
                       )}
                     </button>
                   ))}
-                </div>
-                
-                <div className="mt-auto pt-8 border-t border-white/10">
-                  <p className="text-white/60 text-sm">
-                    &copy; {new Date().getFullYear()} Bridvaišio ežeras
-                  </p>
                 </div>
               </div>
             </div>
@@ -192,7 +183,7 @@ const Index = () => {
                     </p>
                     <div className="mb-6 animate-slide-in animation-delay-400">
                       <Button 
-                        className="bg-lake-blue-600 hover:bg-lake-blue-700 text-white transition-all duration-300 hover:scale-105"
+                        className="bg-lake-blue-600 hover:bg-lake-blue-700 text-white transition-all duration-300"
                         onClick={() => window.open("https://lt.wikipedia.org/wiki/Bridvaišis", "_blank")}
                       >
                         Skaityti daugiau Vikipedijoje
