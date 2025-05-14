@@ -62,7 +62,7 @@ const Index = () => {
       <div 
         ref={headerRef}
         className="relative h-[40vh] md:h-[50vh] bg-cover bg-center overflow-hidden" 
-        style={{ backgroundImage: "url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&q=80&w=1280')"}}>
+        style={{ backgroundImage: "url('/lovable-uploads/96099880-b1ae-494a-bce4-eb7fce874564.png')"}}>
         <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
           {/* Diving bubbles that follow the mouse */}
           {[...Array(8)].map((_, i) => (
