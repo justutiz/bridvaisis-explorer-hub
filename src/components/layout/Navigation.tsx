@@ -11,7 +11,13 @@ interface NavigationProps {
   setActiveTab: (tab: string) => void;
 }
 
-// No need for local declaration - moved to vite-env.d.ts
+// Define window.gtag for TypeScript
+declare global {
+  interface Window {
+    gtag: (command: string, action: string, params: any) => void;
+    dataLayer: any[];
+  }
+}
 
 const Navigation: React.FC<NavigationProps> = ({ isLoaded, isMobile, activeTab, setActiveTab }) => {
   const handleTabChange = (value: string) => {
