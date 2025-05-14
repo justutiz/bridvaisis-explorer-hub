@@ -100,17 +100,20 @@ const ImageGallery = () => {
   ];
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+    <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" aria-label="Bridvaišio ežero nuotraukų galerija">
       {images.map((image) => (
-        <div key={image.id} className="relative group">
+        <article key={image.id} className="relative group">
           <Dialog>
             <DialogTrigger asChild>
-              <div className="cursor-zoom-in overflow-hidden rounded-md">
+              <div className="cursor-zoom-in overflow-hidden rounded-md" role="button" aria-label={`Atidaryti ${image.alt}`}>
                 <AspectRatio ratio={4/3}>
                   <img
                     src={image.src}
                     alt={image.alt}
                     className="object-cover w-full h-full transition-transform duration-300 group-hover:scale-105"
+                    loading="lazy"
+                    width="400"
+                    height="300"
                   />
                 </AspectRatio>
                 <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-10 transition-opacity flex items-center justify-center">
@@ -137,9 +140,9 @@ const ImageGallery = () => {
             </DialogContent>
           </Dialog>
           <p className="mt-2 text-sm text-gray-600">{image.description}</p>
-        </div>
+        </article>
       ))}
-    </div>
+    </section>
   );
 };
 

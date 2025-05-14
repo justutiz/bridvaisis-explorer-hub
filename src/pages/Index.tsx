@@ -2,6 +2,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { useToast } from "@/hooks/use-toast";
+import { Helmet } from "react-helmet-async";
 
 // Layout components
 import Header from "@/components/layout/Header";
@@ -36,8 +37,49 @@ const Index = () => {
   const toggleMenu = () => setMenuOpen(!menuOpen);
   const closeMenu = () => setMenuOpen(false);
 
+  // Structured data for JSON-LD
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "LakeBodyOfWater",
+    "name": "Bridvaišio ežeras",
+    "description": "Gražus Lietuvos ežeras žinomas dėl išskirtinių nardymo vietų ir gamtos grožio",
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": "55.593333",
+      "longitude": "23.221389"
+    },
+    "additionalProperty": [
+      {
+        "@type": "PropertyValue",
+        "name": "Maksimalus gylis",
+        "value": "42 m"
+      }
+    ],
+    "image": "/lovable-uploads/96099880-b1ae-494a-bce4-eb7fce874564.png",
+    "url": "https://bridvaisis.lt/"
+  };
+
   return (
-    <div className="min-h-screen bg-gradient-to-b from-lake-blue-50 to-lake-teal-100">
+    <main className="min-h-screen bg-gradient-to-b from-lake-blue-50 to-lake-teal-100">
+      <Helmet>
+        <script type="application/ld+json">
+          {JSON.stringify(structuredData)}
+        </script>
+        <title>{activeTab === "about" ? "Bridvaišio ežeras - Informacija" : 
+                activeTab === "photos" ? "Bridvaišio ežeras - Momentai" :
+                activeTab === "videos" ? "Bridvaišio ežeras - Nardymo video" :
+                activeTab === "diving-texts" ? "Bridvaišio ežeras - Nardytojų įspūdžiai" :
+                "Bridvaišio ežeras - Detali batimetrija"}
+        </title>
+        <meta name="description" content={
+          activeTab === "about" ? "Susipažinkite su Bridvaišio ežeru - vienu iš gražiausių Lietuvos ežerų, tinkančiu nardymui ir poilsiui gamtoje." :
+          activeTab === "photos" ? "Bridvaišio ežero vaizdai, momentai ir nardymo žemėlapiai - pamatykite ežero grožį nuotraukose." :
+          activeTab === "videos" ? "Bridvaišio ežero nardymo video medžiaga - pamatykite ką nardytojai atranda po vandeniu." :
+          activeTab === "diving-texts" ? "Skaitykite nardytojų įspūdžius ir patirtis Bridvaišio ežere." :
+          "Detali Bridvaišio ežero batimetrija - interaktyvus gylio žemėlapis nardytojams ir žvejams."
+        } />
+      </Helmet>
+
       {/* Hero Section with mouse tracking bubbles */}
       <Header isLoaded={isLoaded} bubblesRef={bubblesRef} />
 
@@ -53,18 +95,18 @@ const Index = () => {
       )}
 
       {/* Main Content */}
-      <div className="container mx-auto px-4 py-8">
+      <section className="container mx-auto px-4 py-8">
         <Navigation 
           isLoaded={isLoaded} 
           isMobile={isMobile} 
           activeTab={activeTab} 
           setActiveTab={setActiveTab} 
         />
-      </div>
+      </section>
       
       {/* Footer */}
       <Footer isLoaded={isLoaded} />
-    </div>
+    </main>
   );
 };
 

@@ -1,14 +1,25 @@
+
+User-agent: *
+Allow: /
+
+# Important pages
+Allow: /diving-texts
+Allow: /bathymetry
+
+# Add sitemap location when available
+Sitemap: https://bridvaisis.lt/sitemap.xml
+
+# Googlebot specific rules
 User-agent: Googlebot
 Allow: /
 
+# Bingbot specific rules
 User-agent: Bingbot
 Allow: /
 
+# Social media crawlers
 User-agent: Twitterbot
 Allow: /
 
 User-agent: facebookexternalhit
-Allow: /
-
-User-agent: *
 Allow: /
