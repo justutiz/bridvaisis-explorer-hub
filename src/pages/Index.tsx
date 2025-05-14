@@ -16,8 +16,18 @@ const Index = () => {
   const { toast } = useToast();
   const [activeTab, setActiveTab] = useState("about");
   const [menuOpen, setMenuOpen] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(false);
   const headerRef = useRef<HTMLDivElement>(null);
   const isMobile = useIsMobile();
+  
+  // Add a small delay before showing animations to prevent flickering
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoaded(true);
+    }, 100);
+    
+    return () => clearTimeout(timer);
+  }, []);
   
   // Mouse tracking animation for the header
   useEffect(() => {
@@ -55,6 +65,11 @@ const Index = () => {
     }
   }, [isMobile]);
 
+  const animationClass = (delay = 0) => {
+    if (!isLoaded) return "opacity-0";
+    return `animate-fade-in animation-delay-${delay}`;
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-lake-blue-50 to-lake-teal-100">
       {/* Hero Section with mouse tracking bubbles */}
@@ -64,7 +79,7 @@ const Index = () => {
         style={{ backgroundImage: "url('/lovable-uploads/96099880-b1ae-494a-bce4-eb7fce874564.png')"}}>
         <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
           {/* Diving bubbles that follow the mouse */}
-          {[...Array(8)].map((_, i) => (
+          {isLoaded && [...Array(8)].map((_, i) => (
             <div 
               key={i} 
               className={`bubble absolute rounded-full bg-white bg-opacity-${20 + i * 10} animate-float-${i % 4 + 1}`}
@@ -73,12 +88,13 @@ const Index = () => {
                 height: `${10 + i * 5}px`,
                 left: `${10 + (i * 12)}%`,
                 top: `${30 + (i % 4) * 15}%`,
+                animationDelay: `${i * 0.1}s`
               }}
             />
           ))}
           <div className="text-center text-white p-4 z-10">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-2 animate-fade-in">Bridvaišio ežeras</h1>
-            <p className="text-lg md:text-xl max-w-2xl mx-auto animate-fade-in animation-delay-300">
+            <h1 className={`text-4xl md:text-5xl lg:text-6xl font-bold mb-2 ${animationClass(0)}`}>Bridvaišio ežeras</h1>
+            <p className={`text-lg md:text-xl max-w-2xl mx-auto ${animationClass(300)}`}>
               Gražus Lietuvos ežeras žinomas dėl išskirtinių nardymo vietų ir gamtos grožio
             </p>
           </div>
@@ -157,31 +173,31 @@ const Index = () => {
         )}
         
         {/* Desktop tabs */}
-        <Tabs defaultValue="about" value={activeTab} onValueChange={setActiveTab} className={`w-full ${isMobile ? 'hidden' : 'block'}`}>
-          <TabsList className="grid w-full grid-cols-4 mb-8 animate-fade-in">
+        <Tabs defaultValue="about" value={activeTab} onValueChange={setActiveTab} className={`w-full ${isMobile ? 'hidden' : 'block'} ${isLoaded ? 'opacity-100' : 'opacity-0'} transition-opacity duration-300`}>
+          <TabsList className="grid w-full grid-cols-4 mb-8">
             <TabsTrigger value="about">Apie</TabsTrigger>
             <TabsTrigger value="photos">Batimetrijos žemėlapiai</TabsTrigger>
             <TabsTrigger value="videos">Nardymo video</TabsTrigger>
             <TabsTrigger value="contribute">Prisidėti</TabsTrigger>
           </TabsList>
           
-          <TabsContent value="about" className="space-y-6 animate-fade-in">
+          <TabsContent value="about" className={`space-y-6 transition-all duration-500 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
             <Card>
               <CardContent className="pt-6">
                 <div className="grid md:grid-cols-2 gap-8">
                   <div>
-                    <h2 className="text-2xl font-bold mb-4 animate-slide-in">Apie Bridvaišio ežerą</h2>
-                    <p className="mb-4 animate-slide-in animation-delay-200">
+                    <h2 className="text-2xl font-bold mb-4">Apie Bridvaišio ežerą</h2>
+                    <p className="mb-4">
                       Bridvaišio ežeras yra vienas iš Lietuvos gamtos turtų, esantis vakarinėje 
                       šalies dalyje. Garsėjantis skaidriu vandeniu ir įvairiu povandeniniu 
                       kraštovaizdžiu, jis tapo populiaria vieta nardytojams ir gamtos mylėtojams.
                     </p>
-                    <p className="mb-4 animate-slide-in animation-delay-300">
+                    <p className="mb-4">
                       Ežero maksimalus gylis siekia apie 42 metrus, dėl to jis yra vienas iš 
                       giliausių ežerų regione. Po vandeniu esančios ypatybės apima stačius nuolydžius, 
                       įdomias geologines formacijas ir įvairią vandens gyvūniją.
                     </p>
-                    <div className="mb-6 animate-slide-in animation-delay-400">
+                    <div className="mb-6">
                       <Button 
                         className="bg-lake-blue-600 hover:bg-lake-blue-700 text-white transition-all duration-300"
                         onClick={() => window.open("https://lt.wikipedia.org/wiki/Bridvaišis", "_blank")}
@@ -191,7 +207,7 @@ const Index = () => {
                     </div>
                   </div>
                   
-                  <div className="relative h-[300px] md:h-full min-h-[300px] rounded-lg overflow-hidden animate-scale-in">
+                  <div className="relative h-[300px] md:h-full min-h-[300px] rounded-lg overflow-hidden">
                     <iframe 
                       src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d2046.1004634699386!2d23.216317685191125!3d55.591421137041344!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zNTXCsDM1JzM2LjAiTiAyM8KwMTMnMTcuMiJF!5e0!3m2!1slt!2slt!4v1747206582718!5m2!1slt!2slt" 
                       width="100%" 
@@ -211,8 +227,8 @@ const Index = () => {
           <TabsContent value="photos">
             <Card>
               <CardContent className="pt-6">
-                <h2 className="text-2xl font-bold mb-6 animate-slide-in">Batimetrijos žemėlapiai</h2>
-                <p className="mb-4 animate-slide-in animation-delay-200">
+                <h2 className="text-2xl font-bold mb-6">Batimetrijos žemėlapiai</h2>
+                <p className="mb-4">
                   Žemiau pateikti batimetrijos žemėlapiai rodo Bridvaišio ežero povandeninius 
                   kontūrus, gylio linijas ir nardymo maršrutus. Paspauskite ant paveikslėlių, 
                   kad juos padidintumėte.
@@ -225,8 +241,8 @@ const Index = () => {
           <TabsContent value="videos">
             <Card>
               <CardContent className="pt-6">
-                <h2 className="text-2xl font-bold mb-6 animate-slide-in">Nardymo vaizdo įrašai</h2>
-                <p className="mb-4 animate-slide-in animation-delay-200">
+                <h2 className="text-2xl font-bold mb-6">Nardymo vaizdo įrašai</h2>
+                <p className="mb-4">
                   Tyrinėkite Bridvaišio ežerą per šiuos povandeninius nardymo vaizdo įrašus. 
                   Jie demonstruoja ežero krištolinio vandens skaidrumą, povandeninius bruožus 
                   ir nardymo maršrutus.
@@ -239,8 +255,8 @@ const Index = () => {
           <TabsContent value="contribute">
             <Card>
               <CardContent className="pt-6">
-                <h2 className="text-2xl font-bold mb-6 animate-slide-in">Prisidėkite prie šio puslapio</h2>
-                <p className="mb-4 animate-slide-in animation-delay-200">
+                <h2 className="text-2xl font-bold mb-6">Prisidėkite prie šio puslapio</h2>
+                <p className="mb-4">
                   Turite pasiūlymų dėl patobulinimų, naujų vaizdo įrašų, nuotraukų ar informacijos 
                   apie Bridvaišio ežerą? Prašome užpildyti žemiau esančią formą ir prisidėti.
                 </p>
@@ -250,26 +266,26 @@ const Index = () => {
           </TabsContent>
         </Tabs>
         
-        {/* Mobile content */}
+        {/* Mobile content - apply the same transition improvements */}
         {isMobile && (
-          <div className="space-y-6 animate-fade-in">
+          <div className={`space-y-6 transition-all duration-500 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
             {activeTab === "about" && (
               <Card>
                 <CardContent className="pt-6">
                   <div className="grid gap-6">
                     <div>
-                      <h2 className="text-2xl font-bold mb-4 animate-slide-in">Apie Bridvaišio ežerą</h2>
-                      <p className="mb-4 animate-slide-in animation-delay-200">
+                      <h2 className="text-2xl font-bold mb-4">Apie Bridvaišio ežerą</h2>
+                      <p className="mb-4">
                         Bridvaišio ežeras yra vienas iš Lietuvos gamtos turtų, esantis vakarinėje 
                         šalies dalyje. Garsėjantis skaidriu vandeniu ir įvairiu povandeniniu 
                         kraštovaizdžiu, jis tapo populiaria vieta nardytojams ir gamtos mylėtojams.
                       </p>
-                      <p className="mb-4 animate-slide-in animation-delay-300">
+                      <p className="mb-4">
                         Ežero maksimalus gylis siekia apie 42 metrus, dėl to jis yra vienas iš 
                         giliausių ežerų regione. Po vandeniu esančios ypatybės apima stačius nuolydžius, 
                         įdomias geologines formacijas ir įvairią vandens gyvūniją.
                       </p>
-                      <div className="mb-6 animate-slide-in animation-delay-400">
+                      <div className="mb-6">
                         <Button 
                           className="bg-lake-blue-600 hover:bg-lake-blue-700 text-white transition-all duration-300"
                           onClick={() => window.open("https://lt.wikipedia.org/wiki/Bridvaišis", "_blank")}
@@ -279,7 +295,7 @@ const Index = () => {
                       </div>
                     </div>
                     
-                    <div className="relative h-[300px] rounded-lg overflow-hidden animate-scale-in">
+                    <div className="relative h-[300px] rounded-lg overflow-hidden">
                       <iframe 
                         src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d2046.1004634699386!2d23.216317685191125!3d55.591421137041344!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zNTXCsDM1JzM2LjAiTiAyM8KwMTMnMTcuMiJF!5e0!3m2!1slt!2slt!4v1747206582718!5m2!1slt!2slt" 
                         width="100%" 
@@ -299,8 +315,8 @@ const Index = () => {
             {activeTab === "photos" && (
               <Card>
                 <CardContent className="pt-6">
-                  <h2 className="text-2xl font-bold mb-6 animate-slide-in">Batimetrijos žemėlapiai</h2>
-                  <p className="mb-4 animate-slide-in animation-delay-200">
+                  <h2 className="text-2xl font-bold mb-6">Batimetrijos žemėlapiai</h2>
+                  <p className="mb-4">
                     Žemiau pateikti batimetrijos žemėlapiai rodo Bridvaišio ežero povandeninius 
                     kontūrus, gylio linijas ir nardymo maršrutus. Paspauskite ant paveikslėlių, 
                     kad juos padidintumėte.
@@ -313,8 +329,8 @@ const Index = () => {
             {activeTab === "videos" && (
               <Card>
                 <CardContent className="pt-6">
-                  <h2 className="text-2xl font-bold mb-6 animate-slide-in">Nardymo vaizdo įrašai</h2>
-                  <p className="mb-4 animate-slide-in animation-delay-200">
+                  <h2 className="text-2xl font-bold mb-6">Nardymo vaizdo įrašai</h2>
+                  <p className="mb-4">
                     Tyrinėkite Bridvaišio ežerą per šiuos povandeninius nardymo vaizdo įrašus. 
                     Jie demonstruoja ežero krištolinio vandens skaidrumą, povandeninius bruožus 
                     ir nardymo maršrutus.
@@ -327,8 +343,8 @@ const Index = () => {
             {activeTab === "contribute" && (
               <Card>
                 <CardContent className="pt-6">
-                  <h2 className="text-2xl font-bold mb-6 animate-slide-in">Prisidėkite prie šio puslapio</h2>
-                  <p className="mb-4 animate-slide-in animation-delay-200">
+                  <h2 className="text-2xl font-bold mb-6">Prisidėkite prie šio puslapio</h2>
+                  <p className="mb-4">
                     Turite pasiūlymų dėl patobulinimų, naujų vaizdo įrašų, nuotraukų ar informacijos 
                     apie Bridvaišio ežerą? Prašome užpildyti žemiau esančią formą ir prisidėti.
                   </p>
@@ -341,7 +357,7 @@ const Index = () => {
       </div>
       
       {/* Footer */}
-      <footer className="bg-lake-blue-800 text-white p-6 mt-12 animate-fade-in">
+      <footer className={`bg-lake-blue-800 text-white p-6 mt-12 transition-all duration-500 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}>
         <div className="container mx-auto text-center">
           <p>&copy; {new Date().getFullYear()} Bridvaišio ežero informacinis puslapis</p>
           <p className="text-sm mt-2">Šis puslapis skirtas dalintis informacija apie Bridvaišio ežerą ir nardymo patirtis jame.</p>
