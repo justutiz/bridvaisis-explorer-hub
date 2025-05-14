@@ -23,6 +23,7 @@ const BathymetryViewer = () => {
   useEffect(() => {
     setLoading(true);
     setImageError(false);
+    setLoadProgress(0);
     
     const xhr = new XMLHttpRequest();
     xhr.open('GET', '/bridvaisis_bathymetry.png', true);
@@ -32,6 +33,19 @@ const BathymetryViewer = () => {
       if (event.lengthComputable) {
         const percentComplete = Math.round((event.loaded / event.total) * 100);
         setLoadProgress(percentComplete);
+        
+        // When we reach 100%, prepare for transition
+        if (percentComplete === 100) {
+          // Small delay to show the completed progress before hiding the loader
+          setTimeout(() => {
+            if (imageRef.current) {
+              imageRef.current.onload = () => {
+                setLoading(false);
+                toast.success("Batimetrijos žemėlapis sėkmingai užkrautas");
+              };
+            }
+          }, 500); // Show the completed progress for 500ms
+        }
       }
     };
     
@@ -43,7 +57,6 @@ const BathymetryViewer = () => {
         for (let i = 0; i < uInt8Array.length; i++) {
           binaryString += String.fromCharCode(uInt8Array[i]);
         }
-        const base64 = btoa(binaryString);
         
         // Create blob URL from the image data
         const blob = new Blob([xhr.response], {type: 'image/png'});
@@ -52,10 +65,10 @@ const BathymetryViewer = () => {
         // Set the image source to the blob URL
         if (imageRef.current) {
           imageRef.current.src = blobUrl;
-          imageRef.current.onload = () => {
-            setLoading(false);
-            toast.success("Batimetrijos žemėlapis sėkmingai užkrautas");
-          };
+          
+          // The onload handler is now set in the onprogress event
+          // when it reaches 100%
+          
           imageRef.current.onerror = () => {
             setImageError(true);
             setLoading(false);
@@ -234,13 +247,17 @@ const BathymetryViewer = () => {
 
       <Card className="overflow-hidden relative">
         {loading && (
-          <div className="absolute inset-0 z-10 bg-background/80 flex flex-col items-center justify-center">
+          <div className="absolute inset-0 z-10 bg-background/80 flex flex-col items-center justify-center transition-opacity duration-300">
             <div className="w-full max-w-md px-4 space-y-4">
-              <Skeleton className="h-12 w-12 rounded-full mx-auto" />
+              <Skeleton className={`h-12 w-12 rounded-full mx-auto ${loadProgress === 100 ? 'animate-ping' : ''}`} />
               <div className="space-y-2">
-                <h3 className="text-center font-medium">Kraunamas batimetrijos žemėlapis</h3>
+                <h3 className="text-center font-medium">
+                  {loadProgress < 100 ? 'Kraunamas batimetrijos žemėlapis' : 'Apdorojamas žemėlapis...'}
+                </h3>
                 <Progress value={loadProgress} className="w-full h-2" />
-                <p className="text-center text-sm text-muted-foreground">{loadProgress}% užkrauta...</p>
+                <p className="text-center text-sm text-muted-foreground">
+                  {loadProgress < 100 ? `${loadProgress}% užkrauta...` : 'Baigiama...'}
+                </p>
               </div>
             </div>
           </div>
