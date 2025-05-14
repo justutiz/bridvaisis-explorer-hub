@@ -61,19 +61,19 @@ Tačiau būtent šis ekstremalus derinys Bridvaišį paverčia unikaliu iššūk
         ) : (
           divingTexts.map((text, index) => (
             <Card key={index} className="mb-4 overflow-hidden shadow-lg">
-              <div className="flex flex-col">
+              <div className="grid grid-cols-1 gap-0">
                 {text.image && (
-                  <div className="w-full">
-                    <AspectRatio ratio={16/9} className="relative">
+                  <div className="w-full max-h-[300px] overflow-hidden">
+                    <AspectRatio ratio={21/9} className="relative">
                       <img 
                         src={text.image} 
                         alt={text.title} 
-                        className="w-full h-auto object-cover"
+                        className="w-full h-full object-cover"
                       />
                     </AspectRatio>
                   </div>
                 )}
-                <CardContent className="p-8">
+                <CardContent className="p-8 pt-10">
                   <div className="prose prose-lg max-w-none">
                     <ReactMarkdown
                       components={{
