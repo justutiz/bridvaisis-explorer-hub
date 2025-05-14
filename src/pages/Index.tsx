@@ -11,14 +11,14 @@ import ImageGallery from "@/components/ImageGallery";
 import VideoGallery from "@/components/VideoGallery";
 import SuggestionForm from "@/components/SuggestionForm";
 import { Menu } from "lucide-react";
-import { useMediaQuery } from "@/hooks/use-mobile";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const Index = () => {
   const { toast } = useToast();
   const [activeTab, setActiveTab] = useState("about");
   const [menuOpen, setMenuOpen] = useState(false);
   const headerRef = useRef<HTMLDivElement>(null);
-  const isMobile = useMediaQuery("(max-width: 768px)");
+  const isMobile = useIsMobile();
   
   // Mouse tracking animation for the header
   useEffect(() => {
