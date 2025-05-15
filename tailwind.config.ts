@@ -20,7 +20,7 @@ export default {
 		},
 		extend: {
 			colors: {
-				// Updated color palette to match hero image colors
+				// Updated color palette for a more modern look
 				'lake-blue': {
 					50: '#e6f0f7',
 					100: '#cce0ef',
@@ -113,10 +113,10 @@ export default {
 				},
 				'glow': {
 					'0%, 100%': { 
-						boxShadow: '0 0 10px rgba(148, 174, 213, 0.8)' 
+						boxShadow: '0 0 15px rgba(148, 174, 213, 0.9)' 
 					},
 					'50%': { 
-						boxShadow: '0 0 25px rgba(148, 174, 213, 0.5)' 
+						boxShadow: '0 0 30px rgba(148, 174, 213, 0.6)' 
 					}
 				},
 				'morph': {
@@ -129,13 +129,31 @@ export default {
 					'100%': { 
 						borderRadius: '60% 40% 30% 70%/60% 30% 70% 40%' 
 					}
+				},
+				'float': {
+					'0%, 100%': { 
+						transform: 'translateY(0)' 
+					},
+					'50%': { 
+						transform: 'translateY(-10px)' 
+					}
+				},
+				'shimmer': {
+					'0%': { 
+						backgroundPosition: '-200% 0' 
+					},
+					'100%': { 
+						backgroundPosition: '200% 0' 
+					}
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
 				'accordion-up': 'accordion-up 0.2s ease-out',
 				'glow': 'glow 4s ease-in-out infinite',
-				'morph': 'morph 8s ease-in-out infinite'
+				'morph': 'morph 8s ease-in-out infinite',
+				'float': 'float 6s ease-in-out infinite',
+				'shimmer': 'shimmer 3s linear infinite'
 			},
 			backdropFilter: {
 				'none': 'none',
@@ -144,7 +162,7 @@ export default {
 			boxShadow: {
 				'neon': '0 0 5px theme(colors.blue.200), 0 0 20px theme(colors.blue.700)',
 				'glass': '0 8px 32px rgba(0, 0, 0, 0.1)',
-				'modern': '0 20px 80px -20px rgba(0,0,0,0.1)'
+				'modern': '0 20px 80px -20px rgba(0,0,0,0.15)'
 			}
 		}
 	},
