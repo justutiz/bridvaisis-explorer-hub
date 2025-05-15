@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -89,7 +90,7 @@ const TabContent: React.FC<TabContentProps> = ({ activeTab }) => {
     case "diving-texts":
       return (
         <Card>
-          <CardContent className="pt-6">
+          <CardContent className="pt-6 text-left">
             <DivingTexts />
           </CardContent>
         </Card>

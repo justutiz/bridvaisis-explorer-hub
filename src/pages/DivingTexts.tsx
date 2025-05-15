@@ -43,10 +43,10 @@ Tačiau būtent šis ekstremalus derinys Bridvaišį paverčia unikaliu iššūk
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="mb-8">
-        <h1 className="text-3xl font-bold">
+        <h1 className="text-3xl font-bold text-left">
           <span>Nardytojų įspūdžiai</span>
         </h1>
-        <p className="text-lg text-muted-foreground mt-2">
+        <p className="text-lg text-muted-foreground mt-2 text-left">
           Skaitykite žmonių patirtis nardant Bridvaišio ežere
         </p>
       </div>
@@ -54,7 +54,7 @@ Tačiau būtent šis ekstremalus derinys Bridvaišį paverčia unikaliu iššūk
       <div className="grid grid-cols-1 gap-6">
         {divingTexts.length === 0 ? (
           <Card className="col-span-full">
-            <CardContent className="p-6 text-center">
+            <CardContent className="p-6">
               <p className="text-muted-foreground">Įspūdžiai bus pridėti netrukus...</p>
             </CardContent>
           </Card>
@@ -72,16 +72,16 @@ Tačiau būtent šis ekstremalus derinys Bridvaišį paverčia unikaliu iššūk
                   </div>
                 )}
                 <CardContent className="p-8 pt-6">
-                  <div className="prose prose-lg max-w-none">
+                  <div className="prose prose-lg max-w-none text-left">
                     <ReactMarkdown
                       components={{
-                        h1: ({node, ...props}) => <h1 className="text-2xl font-bold mb-4" {...props} />,
-                        h2: ({node, ...props}) => <h2 className="text-xl font-bold mt-6 mb-4" {...props} />,
-                        h3: ({node, ...props}) => <h3 className="text-lg font-bold mt-5 mb-3" {...props} />,
-                        p: ({node, ...props}) => <p className="my-4 text-base leading-relaxed" {...props} />,
+                        h1: ({node, ...props}) => <h1 className="text-2xl font-bold mb-4 text-left" {...props} />,
+                        h2: ({node, ...props}) => <h2 className="text-xl font-bold mt-6 mb-4 text-left" {...props} />,
+                        h3: ({node, ...props}) => <h3 className="text-lg font-bold mt-5 mb-3 text-left" {...props} />,
+                        p: ({node, ...props}) => <p className="my-4 text-base leading-relaxed text-left" {...props} />,
                         strong: ({node, ...props}) => <strong className="font-bold" {...props} />,
-                        ul: ({node, ...props}) => <ul className="my-5 list-disc pl-6" {...props} />,
-                        li: ({node, ...props}) => <li className="mb-2 leading-relaxed" {...props} />,
+                        ul: ({node, ...props}) => <ul className="my-5 list-disc pl-6 text-left" {...props} />,
+                        li: ({node, ...props}) => <li className="mb-2 leading-relaxed text-left" {...props} />,
                       }}
                     >
                       {text.content}
