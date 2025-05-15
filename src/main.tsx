@@ -19,7 +19,13 @@ function gtag(...args: any[]) {
 }
 window.gtag = gtag;
 
-// Apply dark theme to document
+// Apply dark theme to document and add prefers-reduced-motion check
 document.documentElement.classList.add('dark');
+
+// Set up motion preference detection
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+if (prefersReducedMotion) {
+  document.documentElement.classList.add('reduce-motion');
+}
 
 createRoot(document.getElementById("root")!).render(<App />);

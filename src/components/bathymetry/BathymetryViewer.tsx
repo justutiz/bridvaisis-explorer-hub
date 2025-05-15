@@ -41,15 +41,17 @@ const BathymetryViewer = () => {
   };
 
   return (
-    <div className={`${isFullscreen ? 'fixed inset-0 z-50 bg-background p-4' : 'space-y-4'}`}>
+    <div className={`${isFullscreen ? 'fixed inset-0 z-50 bg-background p-4' : 'space-y-6'}`}>
       {!isFullscreen && (
-        <>
-          <h2 className="text-2xl font-bold mb-6">Detali batimetrija</h2>
-          <p className="mb-4">
+        <div className="mb-8">
+          <h2 className="text-3xl font-bold mb-4 text-gradient animate-pulse-glow">
+            Detali batimetrija
+          </h2>
+          <p className="mb-6 text-lg text-muted-foreground max-w-3xl mx-auto">
             Interaktyvus Bridvaišio ežero batimetrijos žemėlapis. Naudokite valdiklius arba pelės ratuką priartinti/nutolinti, 
             tempkite paveikslą norėdami jį pastumti.
           </p>
-        </>
+        </div>
       )}
       
       <BathymetryControls 
@@ -63,7 +65,7 @@ const BathymetryViewer = () => {
         onScaleChange={handleScaleChange}
       />
 
-      <Card className={`overflow-hidden relative ${isFullscreen ? 'h-[calc(100%-80px)]' : ''}`}>
+      <Card className={`neo-card overflow-hidden relative ${isFullscreen ? 'h-[calc(100%-80px)]' : 'h-[70vh]'}`}>
         <BathymetryLoadingOverlay 
           loading={loading} 
           loadProgress={loadProgress} 
@@ -89,7 +91,7 @@ const BathymetryViewer = () => {
       </Card>
       
       {!isFullscreen && (
-        <p className="text-sm text-muted-foreground mt-2">
+        <p className="text-sm text-muted-foreground mt-4 animate-fade-in">
           Naudokite pelės ratuką priartinimui/nutolinimui. Tempkite paveikslą norėdami naviguoti.
         </p>
       )}
