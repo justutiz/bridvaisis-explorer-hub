@@ -15,12 +15,14 @@ const Header: React.FC<HeaderProps> = ({ isLoaded, bubblesRef }) => {
   useEffect(() => {
     if (!headerRef.current || isMobile) return;
     
-    // Initialize bubble positions
-    bubblesRef.current.forEach((bubble) => {
-      if (bubble) {
-        bubble.style.transition = "transform 0.8s ease-out";
-      }
-    });
+    // Initialize bubble positions with a slight delay to ensure they're mounted
+    setTimeout(() => {
+      bubblesRef.current.forEach((bubble) => {
+        if (bubble) {
+          bubble.style.transition = "transform 0.8s ease-out";
+        }
+      });
+    }, 100);
     
     const handleMouseMove = (e: MouseEvent) => {
       if (!headerRef.current) return;
@@ -37,34 +39,42 @@ const Header: React.FC<HeaderProps> = ({ isLoaded, bubblesRef }) => {
         const offsetX = (mouseX - rect.width / 2) * speed;
         const offsetY = (mouseY - rect.height / 2) * speed;
         
-        // Apply transition with small delay between bubbles for cascading effect
-        const delay = index * 0.05;
-        bubble.style.transitionDelay = `${delay}s`;
+        // Apply transform directly without delay to improve responsiveness
         bubble.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
       });
     };
     
-    // Add debounced mousemove event to improve performance
-    let timeoutId: number | null = null;
-    const debounceMouseMove = (e: MouseEvent) => {
-      if (timeoutId) return;
-      timeoutId = window.setTimeout(() => {
-        handleMouseMove(e);
-        timeoutId = null;
-      }, 5);
+    // Use requestAnimationFrame for smoother performance instead of timeout
+    let animationFrameId: number;
+    let isMoving = false;
+    
+    const animateMouseMove = (e: MouseEvent) => {
+      if (!isMoving) return;
+      handleMouseMove(e);
+      animationFrameId = requestAnimationFrame(() => animateMouseMove(e));
     };
     
-    headerRef.current.addEventListener('mousemove', debounceMouseMove);
+    const startTracking = (e: MouseEvent) => {
+      isMoving = true;
+      animateMouseMove(e);
+    };
+    
+    const stopTracking = () => {
+      isMoving = false;
+      cancelAnimationFrame(animationFrameId);
+    };
+    
+    headerRef.current.addEventListener('mousemove', startTracking);
+    headerRef.current.addEventListener('mouseleave', stopTracking);
     
     return () => {
       if (headerRef.current) {
-        headerRef.current.removeEventListener('mousemove', debounceMouseMove);
+        headerRef.current.removeEventListener('mousemove', startTracking);
+        headerRef.current.removeEventListener('mouseleave', stopTracking);
       }
-      if (timeoutId) {
-        clearTimeout(timeoutId);
-      }
+      cancelAnimationFrame(animationFrameId);
     };
-  }, [isMobile, isLoaded, bubblesRef]);
+  }, [isMobile, bubblesRef]);
 
   // Reset bubble positions when mouse leaves the header
   useEffect(() => {
@@ -86,7 +96,28 @@ const Header: React.FC<HeaderProps> = ({ isLoaded, bubblesRef }) => {
         headerRef.current.removeEventListener('mouseleave', handleMouseLeave);
       }
     };
-  }, [isMobile, isLoaded, bubblesRef]);
+  }, [isMobile, bubblesRef]);
+
+  // Add a subtle floating animation for bubbles when not being tracked by mouse
+  useEffect(() => {
+    if (isMobile) return;
+    
+    const floatBubbles = () => {
+      bubblesRef.current.forEach((bubble, index) => {
+        if (!bubble || bubble.style.transform.includes('translate')) return;
+        
+        const time = Date.now() / 1000;
+        const floatX = Math.sin(time + index) * 5;
+        const floatY = Math.cos(time + index * 0.5) * 5;
+        
+        bubble.style.transform = `translate(${floatX}px, ${floatY}px)`;
+      });
+    };
+    
+    const intervalId = setInterval(floatBubbles, 50);
+    
+    return () => clearInterval(intervalId);
+  }, [bubblesRef, isMobile]);
 
   return (
     <div 
@@ -107,7 +138,8 @@ const Header: React.FC<HeaderProps> = ({ isLoaded, bubblesRef }) => {
               top: `${30 + (i % 4) * 15}%`,
               animationDelay: `${i * 0.1}s`,
               willChange: "transform",
-              backfaceVisibility: "hidden"
+              backfaceVisibility: "hidden",
+              boxShadow: "0 0 8px rgba(255, 255, 255, 0.5)"
             }}
           />
         ))}
