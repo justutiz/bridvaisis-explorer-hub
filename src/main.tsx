@@ -21,11 +21,17 @@ window.gtag = gtag;
 
 // Apply dark theme to document and add prefers-reduced-motion check
 document.documentElement.classList.add('dark');
+document.documentElement.style.colorScheme = 'dark';
 
 // Set up motion preference detection
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 if (prefersReducedMotion) {
   document.documentElement.classList.add('reduce-motion');
 }
+
+// Make sure text remains crisp
+document.documentElement.style.fontSmooth = 'auto';
+document.documentElement.style.WebkitFontSmoothing = 'antialiased';
+document.documentElement.style.MozOsxFontSmoothing = 'grayscale';
 
 createRoot(document.getElementById("root")!).render(<App />);
