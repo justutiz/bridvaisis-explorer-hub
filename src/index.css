@@ -204,6 +204,35 @@
            before:via-accent/50 before:to-primary/50 before:animate-gradient-shift
            before:bg-[length:200%_auto];
   }
+  
+  /* Gradient components */
+  .gradient-primary {
+    @apply bg-gradient-to-r from-primary via-primary/80 to-primary/60;
+  }
+  
+  .gradient-accent {
+    @apply bg-gradient-to-r from-accent via-accent/80 to-accent/60;
+  }
+  
+  .gradient-card {
+    @apply bg-gradient-to-br from-card via-card/90 to-accent/5 backdrop-blur-md border border-white/10 rounded-lg;
+  }
+  
+  .gradient-header {
+    @apply bg-gradient-to-b from-black/60 via-black/40 to-transparent;
+  }
+  
+  .gradient-footer {
+    @apply bg-gradient-to-r from-lake-blue-900/90 via-lake-blue-800/80 to-lake-teal-900/70 backdrop-blur-lg;
+  }
+  
+  .gradient-glass {
+    @apply bg-gradient-to-br from-white/10 via-white/5 to-transparent backdrop-blur-md border border-white/10;
+  }
+  
+  .gradient-text {
+    @apply bg-gradient-to-r from-foreground via-foreground/90 to-foreground/70 bg-clip-text text-transparent;
+  }
 }
 
 /* Animation classes */

@@ -41,7 +41,7 @@ const BathymetryViewer = () => {
   };
 
   return (
-    <div className={`${isFullscreen ? 'fixed inset-0 z-50 bg-background p-4' : 'space-y-6'}`}>
+    <div className={`${isFullscreen ? 'fixed inset-0 z-50 bg-gradient-to-br from-background via-background to-muted/30 p-4' : 'space-y-6'}`}>
       {!isFullscreen && (
         <div className="mb-8">
           <h2 className="text-3xl font-bold mb-4 text-gradient animate-pulse-glow">
@@ -65,7 +65,7 @@ const BathymetryViewer = () => {
         onScaleChange={handleScaleChange}
       />
 
-      <Card className={`neo-card overflow-hidden relative ${isFullscreen ? 'h-[calc(100%-80px)]' : 'h-[70vh]'} shadow-xl backdrop-blur-md bg-card/60 border-white/10`}>
+      <Card gradient className={`neo-card overflow-hidden relative ${isFullscreen ? 'h-[calc(100%-80px)]' : 'h-[70vh]'} shadow-xl backdrop-blur-md bg-card/60 border-white/10`}>
         <BathymetryLoadingOverlay 
           loading={loading} 
           loadProgress={loadProgress} 

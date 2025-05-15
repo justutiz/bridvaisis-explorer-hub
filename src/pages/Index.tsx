@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect, useRef } from "react";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { useToast } from "@/hooks/use-toast";
@@ -82,7 +83,7 @@ const Index = () => {
   };
 
   return (
-    <main className="min-h-screen bg-gradient-to-b from-lake-blue-50 to-lake-teal-100">
+    <main className="min-h-screen bg-gradient-to-b from-lake-blue-900/30 via-lake-teal-900/20 to-lake-blue-900/30 backdrop-blur-sm">
       <Helmet>
         <script type="application/ld+json">
           {JSON.stringify(structuredData)}
