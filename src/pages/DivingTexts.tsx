@@ -61,6 +61,41 @@ Pasak vietinių, lėktuvas ilgai dugne neužsibuvo. Gyventojai sparčiai jį „
 
 Bridvaišis dar kartą įrodo – kiekvienas nėrimas čia gali tapti kelione į praeitį. Kartais labai tamsią, bet kartu ir be galo įdomią.`,
       image: "/lovable-uploads/aef4e78f-917d-4ce3-b690-71881c0e25d7.png"
+    },
+    {
+      title: "Sparnas iš praeities: Bridvaišio ežero lobis rado namus Panevėžyje",
+      author: "Aviacijos istorijos tyrinėtojas",
+      content: `## ✈️ **Sparnas iš praeities: Bridvaišio ežero lobis rado namus Panevėžyje**
+
+Bridvaišio ežeras Tytuvėnuose – ne tik mistiškas, tamsus, kupinas nardymo objektų, bet ir tikras istorijos saugotojas. Tarp raganos, vandens dviračio ir „ofisiuko", ežero dugne gulėjo viena vertingiausių Antrojo pasaulinio karo relikvijų – sovietinio naikintuvo **JAK-3 sparnas**. Ir jis pagaliau pasiekė paviršių.
+
+### 🛠️ **Unikalus radinys – unikali dovana**
+
+1944-aisiais Bridvaišio gelmėse sudužo sovietų naikintuvas JAK-3. Po beveik šešių dešimtmečių, ūkininkas ir naras mėgėjas **Vytautas Mačiūnas** sparną aptiko maždaug 7 metrų gylyje. Relikviją iškėlė su savo sukonstruotu įrenginiu – dviejų valčių konstrukcija ir virš vandens sukamu velenu. Kai sparnas pasirodė, ežeras paskendo benzino kvape – jame vis dar buvo likę degalų.
+
+Nepaisant siūlymų parduoti už tūkstančius eurų, Mačiūnas nusprendė: šis istorinis daiktas turi priklausyti visiems. Jis **padovanojo sparną Panevėžio aeroklubui**.
+
+### 🧱 **Muziejinis eksponatas su liepsnos pėdsakais**
+
+Sparnas – sudegęs, aplaužytas, bet autentiškas. Kartu su juo aeroklubas gavo ir **ratą su padanga, stabdžių trinkeles, karinį šalmą, maisto katiliuką** su išgraviruota pavarde ir net **aviacinę bombą** su sparnuote. Visa tai – iškeltos liekanos iš to paties lėktuvo, žuvusio mūšyje.
+
+Pasak **Broniaus Zaronskio**, Panevėžio aeroklubo vadovo, šis eksponatas – vienas iš **paskutinių išlikusių JAK-3 pavyzdžių pasaulyje**, o panašų galima pamatyti tik Le Buržė aviacijos muziejuje Paryžiuje.
+
+### 🔥 **Tragedija virš Tytuvėnų**
+
+1944 m. vasarą liudininkas **Jurgis Určinskas**, tuo metu 15-os metų, iš pievos stebėjo oro mūšį: vokiečių „meseršmitas" atakavo sovietų bombonešius, vienas naikintuvas užsidegė ir nuskrido link Bridvaišio. Lakūnas, neturėjęs galimybės katapultuotis, tikriausiai bandė nusileisti avariniu būdu, tačiau kliudė alksnius ir **sudužo vos už 300 metrų nuo liudininko akių**.
+
+Manoma, kad pilotas žuvo vietoje. 1978 m. sovietų kariuomenė **slapta iškėlė lėktuvą** – kartu su kabina ir palaikais, tačiau ne viskas buvo išgabenta.
+
+---
+
+💬 **„Man nereikia atlygio – noriu, kad išliktų istorija."**
+– Vytautas Mačiūnas
+
+---
+
+Šiandien dalis Bridvaišio paslapties jau pasiekė muziejų – bet kas žino, kiek dar jos liko ežero dugne...`,
+      image: "/lovable-uploads/8a0943ae-6714-42b7-af25-e61feafb1b7a.png"
     }
   ];
 
