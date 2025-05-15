@@ -29,9 +29,9 @@ if (prefersReducedMotion) {
   document.documentElement.classList.add('reduce-motion');
 }
 
-// Make sure text remains crisp
-document.documentElement.style.fontSmooth = 'auto';
-document.documentElement.style.WebkitFontSmoothing = 'antialiased';
-document.documentElement.style.MozOsxFontSmoothing = 'grayscale';
+// Apply font smoothing using className instead of direct style properties
+// This avoids TypeScript errors with non-standard CSS properties
+const htmlElement = document.documentElement;
+htmlElement.classList.add('antialiased');
 
 createRoot(document.getElementById("root")!).render(<App />);
