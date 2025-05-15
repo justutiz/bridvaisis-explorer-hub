@@ -11,31 +11,40 @@ const DivingTexts = () => {
     {
       title: "Bridvaišio ežeras: tamsi gelmė, kuri traukia ir gąsdina",
       author: "Nardytojas",
-      content: `**Bridvaišio ežeras: tamsi gelmė, kuri traukia ir gąsdina**
+      content: `## 🌑 **Bridvaišio ežeras: tamsi gelmė, kuri traukia ir gąsdina**
 
-Bridvaišio vardas tarp narų skamba ne šiaip sau – jis lyg paslaptingas vartas į kitą pasaulį. Tai vieta, kur net patyrusiems nardytojams tenka susidurti su netikėtomis emocijomis: nuo azotinės narkozės miglos iki keistų vaizdinių, apie kuriuos vėliau kalbama puse lūpų... Kas tai lemia? Pirmiausia – vandens tamsa. Pažvelgus į paviršių iš gilumos, atrodo, kad virš galvos plyti tirštas kraujo sluoksnis. Antra – vos žengus nuo kranto, po kojomis atsiveria milžiniškas status šlaitas, be jokio perėjimo į lėtą gilumą. Ir, žinoma, – gylis: daugiau nei 40 metrų.
+Bridvaišio vardas tarp narų skamba ne šiaip sau – jis lyg paslaptingas vartas į kitą pasaulį. 🌌 Tai vieta, kur net patyrusiems nardytojams tenka susidurti su netikėtomis emocijomis: nuo azotinės narkozės miglos 🫧 iki keistų vaizdinių 👻, apie kuriuos vėliau kalbama puse lūpų...
 
-Tačiau būtent šis ekstremalus derinys Bridvaišį paverčia unikaliu iššūkiu – vieta, kurią vertina patyrę narai. Čia patogu privažiuoti, įeiti į vandenį – infrastruktūra draugiška, o povandeninis pasaulis slepia ne vieną įdomybę.
+### 🔦 Kas tai lemia?
 
-**Ką pamatysi po vandeniu?**
+Pirmiausia – vandens tamsa. Pažvelgus į paviršių iš gilumos, atrodo, kad virš galvos plyti tirštas kraujo sluoksnis 🩸.
+Antra – vos žengus nuo kranto, po kojomis atsiveria milžiniškas status šlaitas ⛰️, be jokio perėjimo į lėtą gilumą.
+Ir, žinoma – gylis: daugiau nei 40 metrų 📏.
 
-* **Šlaitas:** tai natūralus ežero reljefas – beveik vertikali siena, išvagota vėgėlių urvų. Jis toks status, kad stovint vos metro gylyje, per kelias minutes galima pasiekti pačią dugno ribą – net 42 metrus.
+Tačiau būtent šis ekstremalus derinys Bridvaišį paverčia **unikaliu iššūkiu** – vieta, kurią vertina patyrę narai 🤿. Čia patogu privažiuoti 🚗, įeiti į vandenį – infrastruktūra draugiška, o povandeninis pasaulis slepia ne vieną įdomybę.
 
-* **Verpimo ratelis (6 m):** pirmas pasitinkantis objektas – tarsi pasveikinimas iš praeities, tyliai laukiantis narų.
+---
 
-* **Kelio ženklas (12 m):** jei pasimestum tarp dangaus ir dugno – čia ežeras pats parodys kryptį. Tikras ženklas, tarsi iš povandeninės juokų šalies.
+## 🧭 Ką pamatysi po vandeniu?
 
-* **Ofisiukas (15 m):** stalas, kompiuteris, klaviatūra – visas „nuotolinio darbo" komplektas. Kas sakė, kad dirbti galima tik ant žemės?
+* **🌀 Verpimo ratelis (6 m)** – pirmas pasitinkantis objektas – tarsi pasveikinimas iš praeities.
+* **🚸 Kelio ženklas (12 m)** – jei pasimestum tarp dangaus ir dugno, šis ženklas parodys kryptį.
+* **💻 Ofisiukas (15 m)** – stalas, kompiuteris, klaviatūra – visas „nuotolinio darbo" komplektas net po vandeniu!
+* **🚣 Valtis (18 m)** – medinė valtis, įsitaisiusi ant šlaito, kažkokiu stebuklu dar laikosi vietoje.
+* **🧙 Ragana (27 m)** – turbūt keisčiausias objektas – vietinė gyventoja, kurią geriau stebėti iš tolo...
+* **🚴‍♂️ Ereliukas (42 m)** – senovinis vandens dviratis, dažnai paskendęs tirštame ūke.
 
-* **Valtis (18 m):** medinė valtis, įsitaisiusi ant šlaito, kažkokiu stebuklu dar laikosi vietoje. Lyg laukdama, kol kažkas ją ištrauks iš amžino miego.
+---
 
-* **Ragana (27 m):** turbūt keisčiausias objektas – ragana, kuri, atrodo, tik ir laukia nekviestų svečių. Patarimas: nepriartėk per daug.
+## ⚠️ Dėmesio – ne pradedantiesiems!
 
-* **Ereliukas (42 m):** senovinis vandens dviratis – Bridvaišio paslaptis pačioje gelmėje. Deja, dažnai paskendęs tamsiame ūke, todėl jo pamatyti nepavyksta kiekvienam.
+Šis ežeras – ne visiems. Dėl staigaus nuolydžio ir ypač tamsaus vandens čia nardyti saugu tik gerai pasiruošus. Jei vis dar mokaisi suvaldyti plūdrumą – geriau pradėti nuo paprastesnių vietų.
 
-**Svarbus perspėjimas:** šis ežeras – ne pradedantiesiems. Dėl staigaus nuolydžio ir ypač tamsaus vandens čia nardyti saugu tik gerai pasiruošus. Jei vis dar mokaisi suvaldyti plūdrumą – geriau pradėti nuo paprastesnių vietų.
+---
 
-**Kada geriausia nerti?** Žiemą. Kuo šaltesnis vanduo, tuo skaidresnis jis tampa. O kartu – ir Bridvaišio paslaptys lengviau atsiskleidžia...`,
+## ❄️ Kada geriausia nerti?
+
+Žiemą. Kuo šaltesnis vanduo, tuo jis skaidresnis ir ramesnis. O kartu – ir Bridvaišio paslaptys lengviau atsiskleidžia...`,
       image: "/lovable-uploads/fae03c4f-38e3-4ed1-9368-dcd7ae090e58.png"
     },
     {
