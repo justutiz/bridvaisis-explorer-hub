@@ -52,6 +52,24 @@
   border-color: rgba(255, 255, 255, 0.2);
 }
 
+/* Glass effect card */
+.glass-card {
+  padding: 2em;
+  border-radius: 1.5rem;
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.glass-card:hover {
+  transform: translateY(-5px);
+  background: rgba(255, 255, 255, 0.05);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
 .read-the-docs {
   color: #888;
   font-weight: 300;
@@ -83,4 +101,3 @@
   transform: translateY(-20px);
   transition: opacity 300ms, transform 300ms;
 }
-
