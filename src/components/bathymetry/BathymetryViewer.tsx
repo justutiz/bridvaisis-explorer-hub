@@ -32,14 +32,6 @@ const BathymetryViewer = () => {
     updateContainerDimensions
   } = useBathymetryControls(imageRef);
 
-  const handleImageLoaded = () => {
-    // This is handled by the useBathymetryImage hook
-  };
-
-  const handleImageError = () => {
-    // This is handled by the useBathymetryImage hook
-  };
-
   return (
     <div className={`${isFullscreen ? 'fixed inset-0 z-50 bg-gradient-to-br from-background via-background to-muted/30 p-4' : 'space-y-6'}`}>
       {!isFullscreen && (
@@ -73,15 +65,15 @@ const BathymetryViewer = () => {
           onRetry={retryLoading}
         />
         
-        <CardContent className="p-0 overflow-hidden h-full">
+        <CardContent className="p-0 h-full">
           <BathymetryMap
             loading={loading}
             imageError={imageError}
             scale={scale}
             position={position}
             onPositionChange={setPosition}
-            onImageLoaded={handleImageLoaded}
-            onImageError={handleImageError}
+            onImageLoaded={() => {}}
+            onImageError={() => {}}
             imageRef={imageRef}
             isFullscreen={isFullscreen}
             onContainerResize={updateContainerDimensions}

@@ -141,11 +141,7 @@ const BathymetryMap: React.FC<BathymetryMapProps> = ({
   return (
     <div
       ref={containerRef}
-      className={`relative overflow-hidden cursor-grab active:cursor-grabbing touch-none select-none ${
-        isFullscreen 
-          ? "w-full h-full" 
-          : "h-[70vh] md:h-[600px]"
-      }`}
+      className={`relative overflow-hidden cursor-grab active:cursor-grabbing touch-none select-none w-full h-full`}
       onMouseDown={handleMouseDown}
       onMouseMove={handleMouseMove}
       onMouseUp={handleDragEnd}
