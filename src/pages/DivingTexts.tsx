@@ -37,6 +37,30 @@ Tačiau būtent šis ekstremalus derinys Bridvaišį paverčia unikaliu iššūk
 
 **Kada geriausia nerti?** Žiemą. Kuo šaltesnis vanduo, tuo skaidresnis jis tampa. O kartu – ir Bridvaišio paslaptys lengviau atsiskleidžia...`,
       image: "/lovable-uploads/fae03c4f-38e3-4ed1-9368-dcd7ae090e58.png"
+    },
+    {
+      title: "Bridvaišio ežero paslaptis: Antrojo pasaulinio karo naikintuvo liekanos",
+      author: "Istorijos mylėtojas",
+      content: `## ✈️ **Bridvaišio ežero paslaptis: Antrojo pasaulinio karo naikintuvo liekanos**
+
+Atrodo, kad Bridvaišio ežeras vis dar turi kuo nustebinti net ir daug mačiusius narus. Po tamsiais šio mistiško vandens sluoksniais slypi ne tik ragana ar medinė valtis, bet ir tikras istorinis radinys – Antrojo pasaulinio karo sovietinio naikintuvo liekanos.
+
+### 🔍 Viskas prasidėjo nuo treniruotės
+
+2009 metais vienas Lietuvos karinių jūrų pajėgų naras, treniruodamasis Bridvaišio ežere, pastebėjo neįprastą žalsvą objektą vos 5–6 metrų gylyje. Pasirodo, tai buvo lėktuvo sparnas su dar išlikusiu ratu. Net padanga buvo puikiai išsilaikiusi – ji, kaip vėliau paaiškėjo, pagaminta Jaroslavlio gamykloje.
+
+### 🕰️ Liudininkų istorijos – lyg iš kino
+
+Tytuvėnų gyventojas Vladas Buškus pasakoja, kad 1944 metų vasarą, ganydamas karves prie ežero, išvydo, kaip virš galvos įvyko oro mūšis. Vienas naikintuvas smigo tiesiai į Bridvaišį. Jo draugas, išdrįsęs panerti prie nukritusio lėktuvo, esą net nusegė nuo lakūno laikrodį ir pasiėmė pistoletą.
+
+### 🧩 Lėktuvo dalys – nuo spektaklių iki istorijos muziejų
+
+Pasak vietinių, lėktuvas ilgai dugne neužsibuvo. Gyventojai sparčiai jį „utilizavo" – dalys naudotos ne tik ūkio reikmėms, bet ir… spektaklių scenografijai. Tačiau tai, kas liko, vis dar saugoma po vandeniu. Šiandien svarstoma galimybė likusias konstrukcijas eksponuoti Tytuvėnų regioninio parko lankytojų centre.
+
+---
+
+Bridvaišis dar kartą įrodo – kiekvienas nėrimas čia gali tapti kelione į praeitį. Kartais labai tamsią, bet kartu ir be galo įdomią.`,
+      image: "/lovable-uploads/aef4e78f-917d-4ce3-b690-71881c0e25d7.png"
     }
   ];
 
