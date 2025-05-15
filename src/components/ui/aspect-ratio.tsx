@@ -15,7 +15,7 @@ const AspectRatio = React.forwardRef<
     ref={ref}
     className={cn(
       className,
-      glass && "backdrop-blur-md bg-white/5 border border-white/10 shadow-lg rounded-lg overflow-hidden"
+      glass && "backdrop-blur-md bg-white/5 border border-white/10 shadow-xl rounded-lg overflow-hidden"
     )}
     {...props}
   />

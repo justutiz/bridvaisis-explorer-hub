@@ -59,7 +59,7 @@ const SuggestionForm = () => {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 glass-panel p-6 rounded-xl shadow-xl">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <FormField
             control={form.control}
@@ -68,7 +68,7 @@ const SuggestionForm = () => {
               <FormItem>
                 <FormLabel>Jūsų vardas</FormLabel>
                 <FormControl>
-                  <Input placeholder="Jonas Jonaitis" {...field} />
+                  <Input placeholder="Jonas Jonaitis" {...field} className="shadow-md focus:shadow-lg transition-shadow" />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -82,7 +82,7 @@ const SuggestionForm = () => {
               <FormItem>
                 <FormLabel>El. paštas</FormLabel>
                 <FormControl>
-                  <Input placeholder="jusu.pastas@pavyzdys.lt" {...field} />
+                  <Input placeholder="jusu.pastas@pavyzdys.lt" {...field} className="shadow-md focus:shadow-lg transition-shadow" />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -97,7 +97,7 @@ const SuggestionForm = () => {
             <FormItem>
               <FormLabel>Pasiūlymo tipas</FormLabel>
               <FormControl>
-                <Input placeholder="Naujas vaizdo įrašas, svetainės patobulinimas, nauja informacija ir t.t." {...field} />
+                <Input placeholder="Naujas vaizdo įrašas, svetainės patobulinimas, nauja informacija ir t.t." {...field} className="shadow-md focus:shadow-lg transition-shadow" />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -113,7 +113,7 @@ const SuggestionForm = () => {
               <FormControl>
                 <Textarea 
                   placeholder="Išsamiai aprašykite savo pasiūlymą..." 
-                  className="min-h-[120px]"
+                  className="min-h-[120px] shadow-md focus:shadow-lg transition-shadow"
                   {...field} 
                 />
               </FormControl>
@@ -125,7 +125,7 @@ const SuggestionForm = () => {
           )}
         />
         
-        <Button type="submit" className="w-full md:w-auto">Pateikti pasiūlymą</Button>
+        <Button type="submit" className="w-full md:w-auto shadow-lg hover:shadow-xl transition-all">Pateikti pasiūlymą</Button>
       </form>
     </Form>
   );

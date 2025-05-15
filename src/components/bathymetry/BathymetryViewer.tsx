@@ -65,7 +65,7 @@ const BathymetryViewer = () => {
         onScaleChange={handleScaleChange}
       />
 
-      <Card className={`neo-card overflow-hidden relative ${isFullscreen ? 'h-[calc(100%-80px)]' : 'h-[70vh]'}`}>
+      <Card className={`neo-card overflow-hidden relative ${isFullscreen ? 'h-[calc(100%-80px)]' : 'h-[70vh]'} shadow-xl backdrop-blur-md bg-card/60 border-white/10`}>
         <BathymetryLoadingOverlay 
           loading={loading} 
           loadProgress={loadProgress} 

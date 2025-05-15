@@ -36,13 +36,13 @@ const BathymetryControls: React.FC<BathymetryControlsProps> = ({
                 onClick={onReset}
                 variant="outline" 
                 size="sm"
-                className="flex items-center gap-1"
+                className="flex items-center gap-1 shadow-md hover:shadow-lg"
               >
                 <RotateCcw className="h-4 w-4" />
                 <span className="hidden sm:inline">Atstatyti</span>
               </Button>
             </TooltipTrigger>
-            <TooltipContent>
+            <TooltipContent className="shadow-xl">
               <p>Atstatyti pradinį vaizdą</p>
             </TooltipContent>
           </Tooltip>
@@ -55,13 +55,13 @@ const BathymetryControls: React.FC<BathymetryControlsProps> = ({
                 <Button 
                   onClick={onZoomOut}
                   size="sm"
-                  className="flex items-center gap-1 bg-lake-blue-600 hover:bg-lake-blue-700"
+                  className="flex items-center gap-1 bg-lake-blue-600 hover:bg-lake-blue-700 shadow-lake-blue-600/30"
                 >
                   <ZoomOut className="h-4 w-4" />
                   <span className="hidden sm:inline">Nutolinti</span>
                 </Button>
               </TooltipTrigger>
-              <TooltipContent>
+              <TooltipContent className="shadow-xl">
                 <p>Nutolinti vaizdą</p>
               </TooltipContent>
             </Tooltip>
@@ -86,13 +86,13 @@ const BathymetryControls: React.FC<BathymetryControlsProps> = ({
                 <Button 
                   onClick={onZoomIn}
                   size="sm"
-                  className="flex items-center gap-1 bg-lake-blue-600 hover:bg-lake-blue-700"
+                  className="flex items-center gap-1 bg-lake-blue-600 hover:bg-lake-blue-700 shadow-lake-blue-600/30"
                 >
                   <ZoomIn className="h-4 w-4" />
                   <span className="hidden sm:inline">Priartinti</span>
                 </Button>
               </TooltipTrigger>
-              <TooltipContent>
+              <TooltipContent className="shadow-xl">
                 <p>Priartinti vaizdą</p>
               </TooltipContent>
             </Tooltip>
@@ -107,7 +107,7 @@ const BathymetryControls: React.FC<BathymetryControlsProps> = ({
                   onClick={onToggleFullscreen}
                   variant="outline" 
                   size="sm"
-                  className="flex items-center gap-1"
+                  className="flex items-center gap-1 shadow-md hover:shadow-lg"
                 >
                   {isFullscreen ? (
                     <Minimize className="h-4 w-4" />
@@ -119,7 +119,7 @@ const BathymetryControls: React.FC<BathymetryControlsProps> = ({
                   </span>
                 </Button>
               </TooltipTrigger>
-              <TooltipContent>
+              <TooltipContent className="shadow-xl">
                 <p>{isFullscreen ? "Išeiti iš pilno ekrano" : "Pilnas ekranas"}</p>
               </TooltipContent>
             </Tooltip>
@@ -132,13 +132,13 @@ const BathymetryControls: React.FC<BathymetryControlsProps> = ({
                   onClick={onDownload}
                   variant="outline" 
                   size="sm"
-                  className="flex items-center gap-1"
+                  className="flex items-center gap-1 shadow-md hover:shadow-lg"
                 >
                   <Download className="h-4 w-4" />
                   <span className="hidden sm:inline">Atsisiųsti</span>
                 </Button>
               </TooltipTrigger>
-              <TooltipContent>
+              <TooltipContent className="shadow-xl">
                 <p>Atsisiųsti batimetrijos žemėlapį</p>
               </TooltipContent>
             </Tooltip>
