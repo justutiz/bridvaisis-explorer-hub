@@ -100,46 +100,71 @@ const ImageGallery = () => {
   ];
 
   return (
-    <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" aria-label="Bridvaišio ežero nuotraukų galerija">
-      {images.map((image) => (
-        <article key={image.id} className="relative group">
+    <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5" aria-label="Bridvaišio ežero nuotraukų galerija">
+      {images.map((image, index) => (
+        <article 
+          key={image.id} 
+          className="group animate-fade-in"
+          style={{ animationDelay: `${index * 50}ms` }}
+        >
           <Dialog>
             <DialogTrigger asChild>
-              <div className="cursor-zoom-in overflow-hidden rounded-md" role="button" aria-label={`Atidaryti ${image.alt}`}>
+              <div 
+                className="
+                  relative overflow-hidden rounded-2xl cursor-pointer
+                  bg-gradient-to-br from-white/8 via-white/5 to-white/[0.02]
+                  backdrop-blur-sm border border-white/10
+                  transition-all duration-500
+                  hover:border-white/20 hover:shadow-glow-sm hover:scale-[1.02]
+                " 
+                role="button" 
+                aria-label={`Atidaryti ${image.alt}`}
+              >
+                {/* Glass reflection */}
+                <div className="absolute inset-0 bg-gradient-to-br from-white/[0.08] via-transparent to-transparent pointer-events-none z-10 rounded-2xl" />
+                
                 <AspectRatio ratio={4/3}>
                   <img
                     src={image.src}
                     alt={image.alt}
-                    className="object-cover w-full h-full transition-transform duration-300 group-hover:scale-105"
+                    className="object-cover w-full h-full transition-transform duration-700 group-hover:scale-110"
                     loading="lazy"
                     width="400"
                     height="300"
                   />
                 </AspectRatio>
-                <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-10 transition-opacity flex items-center justify-center">
-                  <span className="text-white opacity-0 group-hover:opacity-100 transition-opacity font-medium">
+                
+                {/* Hover overlay */}
+                <div className="
+                  absolute inset-0 z-20
+                  bg-gradient-to-t from-background/90 via-background/20 to-transparent
+                  opacity-0 group-hover:opacity-100
+                  transition-opacity duration-300
+                  flex items-end justify-center pb-6
+                ">
+                  <span className="text-foreground text-sm font-medium px-4 py-2 glass rounded-full">
                     Spustelkite, kad padidintumėte
                   </span>
                 </div>
               </div>
             </DialogTrigger>
-            <DialogContent className="max-w-5xl w-[95vw] p-0 overflow-hidden flex items-center justify-center">
+            <DialogContent className="max-w-5xl w-[95vw] p-0 overflow-hidden border-white/10 bg-background/95 backdrop-blur-2xl">
               <DialogTitle className="sr-only">{image.alt}</DialogTitle>
               <div className="w-full h-full flex flex-col">
-                <div className="relative flex-grow flex items-center justify-center bg-black overflow-hidden">
+                <div className="relative flex-grow flex items-center justify-center bg-background/50 overflow-hidden">
                   <img
                     src={image.src}
                     alt={image.alt}
                     className="max-h-[80vh] w-auto h-auto object-contain"
                   />
                 </div>
-                <div className="bg-black bg-opacity-70 text-white p-4 w-full">
-                  <p>{image.description}</p>
+                <div className="glass-footer p-6 w-full border-t border-white/[0.06]">
+                  <p className="text-foreground/90">{image.description}</p>
                 </div>
               </div>
             </DialogContent>
           </Dialog>
-          <p className="mt-2 text-sm text-gray-600">{image.description}</p>
+          <p className="mt-3 text-sm text-muted-foreground px-1">{image.description}</p>
         </article>
       ))}
     </section>
