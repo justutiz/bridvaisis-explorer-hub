@@ -22,9 +22,9 @@ const Index = () => {
   
   // Determine active tab from URL path
   const getTabFromPath = () => {
-    const path = location.pathname.substring(1); // Remove leading slash
-    if (path === "") return "about"; // Default to about for root path
-    if (path === "diving-text") return "diving-texts"; // Handle both versions
+    const path = location.pathname.substring(1);
+    if (path === "") return "about";
+    if (path === "diving-text") return "diving-texts";
     return path;
   };
   
@@ -35,7 +35,7 @@ const Index = () => {
     setActiveTab(getTabFromPath());
   }, [location.pathname]);
   
-  // Add a small delay before showing animations to prevent flickering
+  // Add a small delay before showing animations
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsLoaded(true);
@@ -45,7 +45,6 @@ const Index = () => {
   }, []);
 
   useEffect(() => {
-    // Reset menu when screen size changes
     if (!isMobile && menuOpen) {
       setMenuOpen(false);
     }
@@ -83,7 +82,13 @@ const Index = () => {
   };
 
   return (
-    <main className="min-h-screen bg-gradient-to-b from-lake-blue-900/30 via-lake-teal-900/20 to-lake-blue-900/30 backdrop-blur-sm">
+    <main className="min-h-screen bg-background relative overflow-hidden">
+      {/* Aurora background effects */}
+      <div className="fixed inset-0 pointer-events-none">
+        <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-primary/[0.03] rounded-full blur-[150px]" />
+        <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-accent/[0.02] rounded-full blur-[130px]" />
+      </div>
+      
       <Helmet>
         <script type="application/ld+json">
           {JSON.stringify(structuredData)}
@@ -118,7 +123,7 @@ const Index = () => {
       )}
 
       {/* Main Content */}
-      <section className="container mx-auto px-4 py-8">
+      <section className="container mx-auto px-4 py-8 relative z-10">
         <Navigation 
           isLoaded={isLoaded} 
           isMobile={isMobile} 
